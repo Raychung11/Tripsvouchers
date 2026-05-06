@@ -5,6 +5,7 @@
     </div>
     <div>
       <a href="<?= e(url('/about')) ?>"><?= e(__('nav.about')) ?></a> ·
+      <a href="<?= e(url('/for-merchants')) ?>"><?= e(__('for_merchants.nav')) ?></a> ·
       <a href="<?= e(url('/merchant/login')) ?>"><?= e(__('nav.merchant_portal')) ?></a> ·
       <a href="<?= e(url('/admin/login')) ?>"><?= e(__('nav.admin')) ?></a>
     </div>

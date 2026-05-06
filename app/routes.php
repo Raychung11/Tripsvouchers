@@ -12,6 +12,8 @@ $router->get('/campaigns',                 [C\HomeController::class, 'campaigns'
 $router->get('/campaigns/{id}',            [C\HomeController::class, 'campaign']);
 $router->get('/merchants',                 [C\HomeController::class, 'merchants']);
 $router->get('/about',                     [C\HomeController::class, 'about']);
+$router->get('/for-merchants',             [C\HomeController::class, 'forMerchants']);
+$router->get('/join',                      [C\HomeController::class, 'forMerchants']);
 
 // Voucher claim (visitor)
 $router->get('/claim/{campaign}',          [C\VoucherController::class, 'claimForm']);

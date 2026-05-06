@@ -13,6 +13,10 @@ $isActive = fn (string $p) => $path === $p || str_starts_with($path, $p . '/') ?
       <a href="<?= e(url('/campaigns')) ?>" class="<?= $isActive('/campaigns') ?>"><?= e(__('nav.campaigns')) ?></a>
       <a href="<?= e(url('/merchants')) ?>" class="<?= $isActive('/merchants') ?>"><?= e(__('nav.merchants')) ?></a>
       <a href="<?= e(url('/chat')) ?>" class="<?= $isActive('/chat') ?>"><?= e(__('nav.chat')) ?></a>
+      <a href="<?= e(url('/for-merchants')) ?>" class="<?= $isActive('/for-merchants') ?>"
+         style="background:var(--c-accent);color:#fff;font-weight:600;">
+        <?= e(__('for_merchants.nav')) ?>
+      </a>
       <span class="lang-switcher">
         <?php foreach (['en' => 'EN', 'zh' => '中文', 'ms' => 'BM'] as $code => $label): ?>
           <a href="<?= e(url('/lang/' . $code)) ?>?back=<?= e(urlencode($_SERVER['REQUEST_URI'] ?? '/')) ?>"

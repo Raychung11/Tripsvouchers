@@ -47,5 +47,8 @@
 
 <div class="card mt-3 text-center">
   <h3 class="mt-0"><?= e(__('home.merchant_cta')) ?></h3>
-  <a href="<?= e(url('/merchant/register')) ?>" class="btn btn-primary btn-lg"><?= e(__('auth.register')) ?></a>
+  <div class="flex gap-1" style="justify-content:center; flex-wrap:wrap;">
+    <a href="<?= e(url('/for-merchants')) ?>" class="btn btn-primary btn-lg"><?= e(__('for_merchants.hero_cta_alt')) ?></a>
+    <a href="<?= e(url('/merchant/register')) ?>" class="btn btn-accent btn-lg"><?= e(__('auth.register')) ?></a>
+  </div>
 </div>

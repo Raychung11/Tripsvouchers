@@ -11,6 +11,44 @@ use App\Models\Location;
 
 class HomeController extends Controller
 {
+    /** Merchant pitch landing page (for sales demos / partner outreach). */
+    public function forMerchants(array $params): void
+    {
+        $stats = [
+            'merchants'   => (int) Database::value("SELECT COUNT(*) FROM merchants WHERE status = 'active' AND subscription_status = 'active'"),
+            'campaigns'   => (int) Database::value("SELECT COUNT(*) FROM campaigns WHERE status = 'active'"),
+            'locations'   => (int) Database::value("SELECT COUNT(*) FROM locations WHERE status = 'active'"),
+            'claimed'     => (int) Database::value('SELECT COUNT(*) FROM vouchers'),
+            'redeemed'    => (int) Database::value('SELECT COUNT(*) FROM redemptions'),
+            'visitors'    => (int) Database::value('SELECT COUNT(DISTINCT customer_phone) FROM vouchers'),
+            'this_month'  => (int) Database::value("SELECT COUNT(*) FROM redemptions WHERE redeemed_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)"),
+            'avg_value'   => (float) Database::value("SELECT COALESCE(AVG(voucher_value),0) FROM campaigns WHERE status = 'active'"),
+            'total_value' => (float) Database::value(
+                'SELECT COALESCE(SUM(c.voucher_value),0) FROM redemptions r JOIN campaigns c ON c.id = r.campaign_id'
+            ),
+        ];
+
+        $featured = Database::all(
+            "SELECT m.business_name, m.category, l.area_name, l.state,
+                COALESCE((SELECT COUNT(*) FROM redemptions r WHERE r.merchant_id = m.id), 0) AS redemptions
+             FROM merchants m
+             LEFT JOIN locations l ON l.id = m.location_id
+             WHERE m.status = 'active' AND m.subscription_status = 'active'
+             ORDER BY redemptions DESC, m.business_name ASC LIMIT 6"
+        );
+
+        $this->render('public/for_merchants', [
+            'title'    => __('for_merchants.meta_title'),
+            'stats'    => $stats,
+            'featured' => $featured,
+            'pricing'  => [
+                'subscription' => (float) config('config.pricing.subscription_fee', 150),
+                'redemption'   => (float) config('config.pricing.redemption_fee', 1.50),
+                'wallet_min'   => (float) config('config.pricing.wallet_min', 100),
+            ],
+        ]);
+    }
+
     /** Lightweight health probe for uptime monitors / load balancers. */
     public function health(array $params): void
     {
