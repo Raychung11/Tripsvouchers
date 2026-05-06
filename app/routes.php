@@ -3,6 +3,9 @@
 
 use App\Controllers as C;
 
+// ─── Health check (for Hostinger / uptime monitors) ───────────────────────
+$router->get('/healthz', [C\HomeController::class, 'health']);
+
 // ─── Public ────────────────────────────────────────────────────────────────
 $router->get('/',                          [C\HomeController::class, 'index']);
 $router->get('/campaigns',                 [C\HomeController::class, 'campaigns']);

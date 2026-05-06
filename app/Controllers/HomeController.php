@@ -4,12 +4,30 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Database;
 use App\Models\Campaign;
 use App\Models\Merchant;
 use App\Models\Location;
 
 class HomeController extends Controller
 {
+    /** Lightweight health probe for uptime monitors / load balancers. */
+    public function health(array $params): void
+    {
+        $db = false;
+        try {
+            $db = (int) Database::value('SELECT 1') === 1;
+        } catch (\Throwable) {
+            $db = false;
+        }
+        $this->json([
+            'ok'   => $db,
+            'db'   => $db,
+            'env'  => (string) env('APP_ENV', 'production'),
+            'time' => date('c'),
+        ], $db ? 200 : 503);
+    }
+
     public function index(array $params): void
     {
         $campaigns = Campaign::active();
