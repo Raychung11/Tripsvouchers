@@ -81,4 +81,21 @@ return [
         'default'   => env('DEFAULT_LANG', 'ms'),
         'available' => ['en', 'zh', 'ms'],
     ],
+
+    // Company / contact info shown in the footer, contact page,
+    // and any legal copy. Edit here once and it propagates everywhere.
+    'company' => [
+        'name'        => 'SLV Group Sdn Bhd',
+        'reg_no'      => env('COMPANY_REG_NO', '202301-XXXXXX'),
+        'address'     => env('COMPANY_ADDRESS', 'Kuala Lumpur, Malaysia'),
+        'email'       => env('COMPANY_EMAIL', 'support@slvgroup.my'),
+        'phone'       => env('COMPANY_PHONE', '+60 3-1234 5678'),
+        // Digits only, used to build wa.me URLs
+        'whatsapp'    => env('COMPANY_WHATSAPP', '60123456789'),
+        'social' => [
+            'facebook'  => env('SOCIAL_FACEBOOK',  'https://facebook.com/slvgroup'),
+            'instagram' => env('SOCIAL_INSTAGRAM', 'https://instagram.com/slvgroup'),
+            'tiktok'    => env('SOCIAL_TIKTOK',    'https://tiktok.com/@slvgroup'),
+        ],
+    ],
 ];

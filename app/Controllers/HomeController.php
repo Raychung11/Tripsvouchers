@@ -118,6 +118,31 @@ class HomeController extends Controller
         $this->render('public/about', ['title' => __('nav.about')]);
     }
 
+    public function privacy(array $params): void
+    {
+        $this->render('public/legal/privacy', [
+            'title'   => __('legal.privacy_title'),
+            'company' => config('config.company', []),
+        ]);
+    }
+
+    public function terms(array $params): void
+    {
+        $this->render('public/legal/terms', [
+            'title'   => __('legal.terms_title'),
+            'company' => config('config.company', []),
+            'pricing' => config('config.pricing', []),
+        ]);
+    }
+
+    public function contact(array $params): void
+    {
+        $this->render('public/legal/contact', [
+            'title'   => __('legal.contact_title'),
+            'company' => config('config.company', []),
+        ]);
+    }
+
     public function switchLang(array $params): void
     {
         $code = (string) ($params['code'] ?? 'en');
