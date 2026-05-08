@@ -1,0 +1,45 @@
+# SLV Voucher Goodie — Hostinger root .htaccess
+#
+# Place at /public_html/.htaccess (sibling of index.php, app/, config/, etc.)
+#
+# - Blocks direct HTTP access to .env and the app/, config/, database/,
+#   storage/ directories.
+# - Maps /assets/* to /public/assets/* so existing asset URLs resolve
+#   without moving any files.
+# - Routes everything else through index.php (the front controller).
+
+Options -MultiViews -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Block sensitive paths
+    RewriteRule ^(\.env|\.git|composer\.(json|lock))$           - [F,L]
+    RewriteRule ^(app|config|database|storage)(/.*)?$           - [F,L]
+
+    # Map /assets/* -> /public/assets/* (CSS, JS, images live in public/)
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
+    # Pass through real files / directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Front controller
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Force HTTPS (Hostinger issues SSL automatically)
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
