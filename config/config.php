@@ -78,7 +78,7 @@ return [
     ],
 
     'lang' => [
-        'default'   => env('DEFAULT_LANG', 'en'),
+        'default'   => env('DEFAULT_LANG', 'ms'),
         'available' => ['en', 'zh', 'ms'],
     ],
 ];
