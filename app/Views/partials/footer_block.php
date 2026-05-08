@@ -12,6 +12,79 @@ $waLink = $waNumber !== '' ? 'https://wa.me/' . $waNumber : '#';
 $mailto = 'mailto:' . ($company['email'] ?? 'info@example.com');
 $social = $company['social'] ?? [];
 ?>
+<style>
+/* Footer styles co-located with the markup so a single file upload
+   keeps both in sync. Uses hardcoded colors (not CSS vars) so the
+   footer still renders correctly even if app.css is stale. */
+.footer { background: linear-gradient(180deg,#0f172a 0%,#020617 100%);
+  color: #cbd5e1; padding: 56px 16px 0; margin-top: 48px; font-size: .92rem; }
+.footer-inner { max-width: 1180px; margin: 0 auto; }
+.footer a { color: #cbd5e1; text-decoration: none; transition: color .15s ease; }
+.footer a:hover { color: #fff; text-decoration: none; }
+
+.footer-grid { display: grid; gap: 36px; padding-bottom: 40px;
+  grid-template-columns: 1fr; }
+@media (min-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+}
+@media (min-width: 960px) {
+  .footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
+}
+.footer-grid > * { min-width: 0; }
+
+.footer-brand { display: flex; flex-direction: column; gap: 14px; }
+.footer-brand-row { display: inline-flex; align-items: center; gap: 10px;
+  color: #fff; align-self: flex-start; text-decoration: none; }
+.footer-brand-row .brand-logo { width: 36px; height: 36px; border-radius: 8px;
+  background: linear-gradient(135deg, #0d9488, #f59e0b);
+  color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
+.footer-brand-row strong { font-size: 1.05rem; color: #fff; }
+.footer-tagline { color: #94a3b8; line-height: 1.55; margin: 0;
+  max-width: 360px; font-size: .9rem; }
+
+.footer-social { display: flex; align-items: center; gap: 10px;
+  margin-top: 4px; flex-wrap: wrap; }
+.footer-social-label { color: #64748b; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .08em;
+  margin-right: 4px; width: 100%; }
+.footer-social a { width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.06); display: inline-grid; place-items: center;
+  color: #cbd5e1; transition: background .15s ease, color .15s ease, transform .15s ease; }
+.footer-social a:hover { background: #0d9488; color: #fff; transform: translateY(-2px); }
+
+.footer-col h4 { color: #fff; font-size: .78rem; margin: 0 0 14px;
+  text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }
+.footer-col ul { list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 9px; }
+.footer-col li { line-height: 1.4; }
+.footer-col a { font-size: .9rem; }
+
+.footer-contact ul { gap: 14px; }
+.footer .contact-item { display: flex; align-items: flex-start; gap: 10px; }
+.footer .contact-link { display: flex; align-items: flex-start; gap: 10px;
+  flex: 1; min-width: 0; color: #cbd5e1; text-decoration: none; }
+.footer .contact-icon { font-size: 1.05rem; line-height: 1.4;
+  flex-shrink: 0; width: 20px; text-align: center; }
+.footer .contact-text { display: flex; flex-direction: column;
+  min-width: 0; flex: 1; }
+.footer .contact-label { color: #64748b; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .08em;
+  line-height: 1.2; margin-bottom: 2px; }
+.footer .contact-value { color: #fff; font-weight: 500; font-size: .92rem;
+  text-transform: none; letter-spacing: normal;
+  word-break: break-word; line-height: 1.35; }
+
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.08);
+  padding: 18px 0 24px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px 18px; flex-wrap: wrap;
+  font-size: .8rem; color: #64748b; }
+.footer-bottom-left { color: #94a3b8; }
+.footer-bottom-right { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-bottom-right a { color: #94a3b8; font-size: .8rem; }
+.footer-bottom-right a:hover { color: #fff; }
+</style>
+
 <footer class="footer" role="contentinfo">
   <div class="footer-inner">
 
