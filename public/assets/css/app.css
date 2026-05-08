@@ -341,24 +341,24 @@ textarea { min-height: 100px; }
 .footer a { color: #cbd5e1; text-decoration: none; transition: color .15s ease; }
 .footer a:hover { color: #fff; text-decoration: none; }
 
-/* Top grid */
+/* Top grid: 1 col on mobile, 2 on tablet, 4 on desktop.
+   Brand sits in the first column; the other three are link/contact columns. */
 .footer-grid {
-  display: grid; gap: 32px; padding-bottom: 40px;
+  display: grid; gap: 36px; padding-bottom: 40px;
   grid-template-columns: 1fr;
 }
 @media (min-width: 600px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 24px; }
 }
-@media (min-width: 900px) {
-  .footer-grid {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1.4fr;
-  }
+@media (min-width: 960px) {
+  .footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; }
 }
+.footer-grid > * { min-width: 0; }   /* prevent grid blowout from long content */
 
-.footer-brand { display: flex; flex-direction: column; gap: 12px; }
+.footer-brand { display: flex; flex-direction: column; gap: 14px; }
 .footer-brand-row {
   display: inline-flex; align-items: center; gap: 10px;
-  color: #fff;
+  color: #fff; align-self: flex-start;
 }
 .footer-brand-row .brand-logo {
   width: 36px; height: 36px; border-radius: 8px;
@@ -367,16 +367,16 @@ textarea { min-height: 100px; }
 }
 .footer-brand-row strong { font-size: 1.05rem; color: #fff; }
 .footer-tagline {
-  color: #94a3b8; line-height: 1.55; margin: 0; max-width: 320px;
-  font-size: .9rem;
+  color: #94a3b8; line-height: 1.55; margin: 0;
+  max-width: 360px; font-size: .9rem;
 }
 
 .footer-social {
   display: flex; align-items: center; gap: 10px; margin-top: 4px; flex-wrap: wrap;
 }
 .footer-social-label {
-  color: #64748b; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em;
-  margin-right: 4px;
+  color: #64748b; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+  margin-right: 4px; width: 100%;
 }
 .footer-social a {
   width: 36px; height: 36px; border-radius: 50%;
@@ -390,7 +390,7 @@ textarea { min-height: 100px; }
 }
 
 .footer-col h4 {
-  color: #fff; font-size: .82rem; margin: 0 0 14px;
+  color: #fff; font-size: .78rem; margin: 0 0 14px;
   text-transform: uppercase; letter-spacing: .1em; font-weight: 700;
 }
 .footer-col ul {
@@ -398,21 +398,29 @@ textarea { min-height: 100px; }
   display: flex; flex-direction: column; gap: 9px;
 }
 .footer-col li { line-height: 1.4; }
+.footer-col a { font-size: .9rem; }
 
+/* Contact column — explicit class names so styles don't leak. */
 .footer-contact ul { gap: 14px; }
-.footer-contact li, .footer-contact a {
+.contact-item {
   display: flex; align-items: flex-start; gap: 10px;
-  line-height: 1.4;
 }
-.footer-contact .contact-icon {
-  font-size: 1.1rem; line-height: 1.2; flex-shrink: 0;
+.contact-link {
+  display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 0;
+  color: #cbd5e1;
 }
-.footer-contact .contact-value {
+.contact-icon {
+  font-size: 1.05rem; line-height: 1.4; flex-shrink: 0; width: 20px; text-align: center;
+}
+.contact-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.contact-label {
+  color: #64748b; font-size: .72rem; text-transform: uppercase;
+  letter-spacing: .08em; line-height: 1.2; margin-bottom: 2px;
+}
+.contact-value {
   color: #fff; font-weight: 500; font-size: .92rem;
-}
-.footer-contact > ul > li > span:not(.contact-icon),
-.footer-contact a > span:not(.contact-icon) {
-  color: #64748b; font-size: .78rem; text-transform: uppercase; letter-spacing: .05em;
+  text-transform: none; letter-spacing: normal;
+  word-break: break-word; line-height: 1.35;
 }
 
 /* Bottom bar */
@@ -420,12 +428,12 @@ textarea { min-height: 100px; }
   border-top: 1px solid rgba(255,255,255,.08);
   padding: 18px 0 24px;
   display: flex; justify-content: space-between; align-items: center;
-  gap: 16px; flex-wrap: wrap;
-  font-size: .82rem; color: #64748b;
+  gap: 12px 18px; flex-wrap: wrap;
+  font-size: .8rem; color: #64748b;
 }
 .footer-bottom-left { color: #94a3b8; }
-.footer-bottom-right { display: flex; gap: 18px; flex-wrap: wrap; }
-.footer-bottom-right a { color: #94a3b8; }
+.footer-bottom-right { display: flex; gap: 16px; flex-wrap: wrap; }
+.footer-bottom-right a { color: #94a3b8; font-size: .8rem; }
 .footer-bottom-right a:hover { color: #fff; }
 
 /* ───────── Chat ───────── */

@@ -62,7 +62,7 @@ $social = $company['social'] ?? [];
         </ul>
       </div>
 
-      <!-- For Merchants column -->
+      <!-- For Merchants + Support column -->
       <div class="footer-col">
         <h4><?= e(__('footer.col_merchants')) ?></h4>
         <ul>
@@ -70,16 +70,8 @@ $social = $company['social'] ?? [];
           <li><a href="<?= e(url('/for-merchants#pricing')) ?>"><?= e(__('footer.link_pricing')) ?></a></li>
           <li><a href="<?= e(url('/merchant/register')) ?>"><?= e(__('footer.link_register')) ?></a></li>
           <li><a href="<?= e(url('/merchant/login')) ?>"><?= e(__('footer.link_login')) ?></a></li>
-        </ul>
-      </div>
-
-      <!-- Support column -->
-      <div class="footer-col">
-        <h4><?= e(__('footer.col_support')) ?></h4>
-        <ul>
           <li><a href="<?= e(url('/for-merchants#faq')) ?>"><?= e(__('footer.link_faq')) ?></a></li>
           <li><a href="<?= e(url('/contact')) ?>"><?= e(__('footer.link_help')) ?></a></li>
-          <li><a href="<?= e(url('/healthz')) ?>" target="_blank" rel="noopener"><?= e(__('footer.link_status')) ?></a></li>
         </ul>
       </div>
 
@@ -88,28 +80,34 @@ $social = $company['social'] ?? [];
         <h4><?= e(__('footer.col_contact')) ?></h4>
         <ul>
           <?php if (!empty($company['whatsapp'])): ?>
-            <li>
-              <a href="<?= e($waLink) ?>" target="_blank" rel="noopener">
+            <li class="contact-item">
+              <a href="<?= e($waLink) ?>" target="_blank" rel="noopener" class="contact-link">
                 <span class="contact-icon">📱</span>
-                <span><?= e(__('footer.whatsapp_label')) ?><br>
-                  <span class="contact-value"><?= e($company['phone'] ?? '+60 ' . $waNumber) ?></span></span>
+                <span class="contact-text">
+                  <span class="contact-label"><?= e(__('footer.whatsapp_label')) ?></span>
+                  <span class="contact-value"><?= e($company['phone'] ?? '+60 ' . $waNumber) ?></span>
+                </span>
               </a>
             </li>
           <?php endif; ?>
           <?php if (!empty($company['email'])): ?>
-            <li>
-              <a href="<?= e($mailto) ?>">
+            <li class="contact-item">
+              <a href="<?= e($mailto) ?>" class="contact-link">
                 <span class="contact-icon">✉️</span>
-                <span><?= e(__('footer.email_label')) ?><br>
-                  <span class="contact-value"><?= e($company['email']) ?></span></span>
+                <span class="contact-text">
+                  <span class="contact-label"><?= e(__('footer.email_label')) ?></span>
+                  <span class="contact-value"><?= e($company['email']) ?></span>
+                </span>
               </a>
             </li>
           <?php endif; ?>
           <?php if (!empty($company['address'])): ?>
-            <li>
+            <li class="contact-item">
               <span class="contact-icon">📍</span>
-              <span><?= e(__('footer.address_label')) ?><br>
-                <span class="contact-value"><?= e($company['address']) ?></span></span>
+              <span class="contact-text">
+                <span class="contact-label"><?= e(__('footer.address_label')) ?></span>
+                <span class="contact-value"><?= e($company['address']) ?></span>
+              </span>
             </li>
           <?php endif; ?>
         </ul>
