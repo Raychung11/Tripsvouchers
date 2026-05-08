@@ -72,6 +72,23 @@ public_html/
 Pre-loaded: 8 merchants spanning all wallet status tiers (healthy / warning /
 critical / disabled), 24 vouchers, 15 redemptions.
 
+## Image uploads
+
+The admin can upload campaign banners, location banners, and platform
+hero images via the dashboard. Files land in `public/uploads/<bucket>/`
+and are served at `/uploads/<bucket>/<filename>` thanks to the
+`/uploads/*` rewrite in `.htaccess`.
+
+Make sure the directory is writable by PHP (`chmod 775 public/uploads`
+or `chmod 755` if PHP runs as the file owner — usually fine on Hostinger
+shared hosting). Each bucket subfolder is auto-created on first upload.
+
+A defence-in-depth `public/uploads/.htaccess` denies execution of any
+PHP/CGI scripts uploaded into that folder.
+
+If uploads silently fail, check Hostinger hPanel → PHP Configuration:
+`upload_max_filesize` and `post_max_size` should be ≥ 4 MB.
+
 ## Notes
 
 - The inner `public/index.php` and `public/.htaccess` are unused on this

@@ -5,6 +5,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS audit_logs;
+DROP TABLE IF EXISTS site_settings;
 DROP TABLE IF EXISTS redemptions;
 DROP TABLE IF EXISTS vouchers;
 DROP TABLE IF EXISTS campaign_merchants;
@@ -208,6 +209,16 @@ CREATE TABLE redemptions (
   CONSTRAINT fk_red_campaign FOREIGN KEY (campaign_id) REFERENCES campaigns(id) ON DELETE CASCADE,
   CONSTRAINT fk_red_merchant FOREIGN KEY (merchant_id) REFERENCES merchants(id) ON DELETE CASCADE,
   CONSTRAINT fk_red_user FOREIGN KEY (redeemed_by) REFERENCES users(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ─── site_settings ────────────────────────────────────────────────────────
+-- Simple key/value store for admin-managed marketing assets:
+-- hero images, intro paragraphs, etc. Edited via /admin/site.
+CREATE TABLE site_settings (
+  `key`        VARCHAR(80)  NOT NULL,
+  `value`      TEXT,
+  `updated_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ─── audit_logs ───────────────────────────────────────────────────────────

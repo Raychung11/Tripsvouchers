@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 
 use App\Core\Controller;
 use App\Core\Database;
+use App\Core\Upload;
 use App\Models\Campaign;
 use App\Models\Location;
 use App\Models\Merchant;
@@ -34,6 +35,16 @@ class CampaignController extends Controller
         $errors = $this->validate(['campaign_name' => 'required', 'voucher_value' => 'required|numeric'], $data);
         if ($errors) {
             flash('errors', $errors);
+            flash_input($data);
+            redirect('/admin/campaigns/create');
+        }
+        try {
+            $uploaded = Upload::imageOrNull($_FILES['banner_file'] ?? null, 'campaigns');
+            if ($uploaded) {
+                $data['banner_image'] = $uploaded;
+            }
+        } catch (\RuntimeException $e) {
+            flash('error', $e->getMessage());
             flash_input($data);
             redirect('/admin/campaigns/create');
         }
@@ -89,7 +100,28 @@ class CampaignController extends Controller
     public function update(array $params): void
     {
         $id = (int) $params['id'];
+        $existing = Campaign::find($id);
         $data = $this->collect();
+        try {
+            $uploaded = Upload::imageOrNull($_FILES['banner_file'] ?? null, 'campaigns');
+            if ($uploaded) {
+                if (!empty($existing['banner_image'])) {
+                    Upload::delete($existing['banner_image']);
+                }
+                $data['banner_image'] = $uploaded;
+            } elseif ($this->input('banner_remove') === '1') {
+                if (!empty($existing['banner_image'])) {
+                    Upload::delete($existing['banner_image']);
+                }
+                $data['banner_image'] = '';
+            } elseif ($data['banner_image'] === '' && !empty($existing['banner_image'])) {
+                // Empty URL field but no remove flag — keep existing
+                $data['banner_image'] = (string) $existing['banner_image'];
+            }
+        } catch (\RuntimeException $e) {
+            flash('error', $e->getMessage());
+            redirect('/admin/campaigns/' . $id . '/edit');
+        }
         Database::run(
             'UPDATE campaigns SET location_id=?, campaign_name=?, description=?, voucher_type=?, voucher_value=?,
               start_date=?, end_date=?, banner_image=?, claim_limit=?, terms=?, status=? WHERE id = ?',

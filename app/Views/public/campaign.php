@@ -1,6 +1,13 @@
 <?php /** @var array $campaign */ /** @var array $merchants */ /** @var bool $claimable */ ?>
+<?php
+$bannerImg  = $campaign['banner_image'] ?? null;
+$bannerCss  = 'linear-gradient(135deg, var(--c-primary), var(--c-primary-dk))';
+if ($bannerImg) {
+    $bannerCss = 'linear-gradient(135deg, rgba(13,148,136,.78), rgba(15,118,110,.85)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
+}
+?>
 <article class="card" style="overflow:hidden; padding:0;">
-  <div style="background: linear-gradient(135deg, var(--c-primary), var(--c-primary-dk)); color:#fff; padding:24px;">
+  <div style="background: <?= $bannerCss ?>; color:#fff; padding:32px 24px;">
     <div class="pill" style="background:rgba(255,255,255,.18); color:#fff;"><?= e(__('campaign.types.' . $campaign['voucher_type'])) ?></div>
     <h1 style="margin:.4em 0 .2em;"><?= e($campaign['campaign_name']) ?></h1>
     <p style="margin:0; opacity:.9;">📍 <?= e($campaign['location_name'] ?? '') ?> · <?= e($campaign['location_state'] ?? '') ?></p>

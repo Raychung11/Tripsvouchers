@@ -158,6 +158,20 @@ return [
         'edit'     => 'Sunting',
         'save'     => 'Simpan',
         'attach_merchant' => 'Tambah peniaga ke kempen',
+
+        // Site Settings
+        'site_settings'                  => 'Imej & Pengenalan Laman',
+        'site_settings_intro'            => 'Muat naik imej hero dan kandungan pengenalan untuk halaman awam. Medan kosong akan kembali ke gradien atau terjemahan lalai.',
+        'site_hero_home'                 => 'Imej hero halaman utama',
+        'site_hero_home_hint'            => 'Imej latar belakang di hero halaman utama. Saiz disyorkan ≥ 1600 × 900.',
+        'site_hero_about'                => 'Banner halaman Tentang',
+        'site_hero_about_hint'           => 'Banner yang dipaparkan di bahagian atas halaman Tentang.',
+        'site_hero_for_merchants'        => 'Imej hero halaman Untuk Peniaga',
+        'site_hero_for_merchants_hint'   => 'Imej latar belakang pada halaman pendaratan peniaga.',
+        'site_intro_home'                => 'Pengenalan halaman utama (HTML)',
+        'site_intro_home_hint'           => 'Blok HTML pilihan, dipaparkan di bawah hero halaman utama. HTML dibenarkan (pentadbir sahaja).',
+        'site_intro_about'               => 'Pengenalan halaman Tentang (HTML)',
+        'site_intro_about_hint'          => 'Blok HTML pilihan, dipaparkan di bahagian atas halaman Tentang.',
     ],
     'redemption' => [
         'invalid'       => 'Baucar tidak ditemui.',
@@ -357,6 +371,17 @@ return [
     ],
 
     'common' => [
+        'upload' => [
+            'banner'        => 'Imej banner',
+            'help'          => 'JPG / PNG / WEBP / GIF · maksimum :max MB',
+            'remove'        => 'Buang imej semasa',
+            'url_alt'       => 'atau tampal URL luar di bawah',
+            'invalid'       => 'Muat naik tidak sah.',
+            'too_large'     => 'Fail terlalu besar. Maksimum :max MB.',
+            'bad_type'      => 'Jenis fail tidak disokong. Guna JPG, PNG, WEBP atau GIF.',
+            'partial'       => 'Fail hanya dimuat naik sebahagian. Sila cuba lagi.',
+            'write_failed'  => 'Gagal menyimpan muat naik. Periksa kebenaran folder.',
+        ],
         'yes'      => 'Ya',
         'no'       => 'Tidak',
         'cancel'   => 'Batal',

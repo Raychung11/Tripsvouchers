@@ -58,6 +58,14 @@ INSERT INTO campaigns (location_id, campaign_name, slug, description, voucher_ty
 INSERT INTO campaign_merchants (campaign_id, merchant_id, status) VALUES
   (1, 1, 'active');
 
+-- Default site settings (empty = falls back to gradient/translation)
+INSERT INTO site_settings (`key`, `value`) VALUES
+  ('hero_home_image',          NULL),
+  ('hero_about_image',         NULL),
+  ('hero_for_merchants_image', NULL),
+  ('intro_home_html',          NULL),
+  ('intro_about_html',         NULL);
+
 -- ─────────────────────────────────────────────────────────────────────────
 -- DEMO DATA — extra merchants, vouchers, redemptions, wallet activity.
 -- Skip / delete this block in production-style seeds.

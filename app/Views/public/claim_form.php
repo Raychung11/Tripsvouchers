@@ -2,7 +2,14 @@
 <div class="container-sm" style="max-width:520px; margin:0 auto;">
   <a href="<?= e(url('/campaigns/' . $campaign['id'])) ?>" class="text-muted">← <?= e(__('common.back')) ?></a>
   <article class="card mt-2" style="padding:0; overflow:hidden;">
-    <div style="background: linear-gradient(135deg, var(--c-primary), var(--c-accent)); color:#fff; padding:20px;">
+    <?php
+    $bannerImg = $campaign['banner_image'] ?? null;
+    $bannerCss = 'linear-gradient(135deg, var(--c-primary), var(--c-accent))';
+    if ($bannerImg) {
+        $bannerCss = 'linear-gradient(135deg, rgba(13,148,136,.78), rgba(245,158,11,.78)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
+    }
+    ?>
+    <div style="background: <?= $bannerCss ?>; color:#fff; padding:24px;">
       <h1 style="margin:0; font-size:1.4rem;"><?= e($campaign['campaign_name']) ?></h1>
       <p style="margin:6px 0 0; opacity:.9;">
         📍 <?= e($campaign['location_name'] ?? '') ?>

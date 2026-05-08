@@ -1,5 +1,13 @@
-<?php /** @var array $campaigns */ ?>
-<section class="hero" style="margin: -24px -16px 24px; border-radius: 0;">
+<?php
+/** @var array $campaigns */
+$heroImg = \App\Models\Setting::get('hero_home_image');
+$introHtml = \App\Models\Setting::get('intro_home_html');
+$heroStyle = 'margin: -24px -16px 24px; border-radius: 0;';
+if ($heroImg) {
+    $heroStyle .= ' background-image: linear-gradient(135deg, rgba(13,148,136,.78) 0%, rgba(15,118,110,.65) 60%, rgba(17,94,89,.78) 100%), url(' . e(asset_or_upload($heroImg)) . '); background-size: cover; background-position: center;';
+}
+?>
+<section class="hero" style="<?= $heroStyle ?>">
   <div class="hero-content">
     <h1><?= e(__('home.hero_title')) ?></h1>
     <p><?= e(__('home.hero_subtitle')) ?></p>
@@ -9,6 +17,12 @@
     </div>
   </div>
 </section>
+
+<?php if ($introHtml): ?>
+  <section class="card mb-3" style="background:#fff;">
+    <?= $introHtml /* admin-controlled HTML, intentionally unescaped */ ?>
+  </section>
+<?php endif; ?>
 
 <h2 class="mb-2"><?= e(__('campaign.list_title')) ?></h2>
 <?php if (empty($campaigns)): ?>

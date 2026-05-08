@@ -158,6 +158,20 @@ return [
         'edit'     => 'Edit',
         'save'     => 'Save',
         'attach_merchant' => 'Add merchant to campaign',
+
+        // Site Settings
+        'site_settings'                  => 'Site Images & Intro',
+        'site_settings_intro'            => 'Upload hero images and intro content for the public landing pages. Empty fields fall back to the default gradient or translation.',
+        'site_hero_home'                 => 'Home page hero image',
+        'site_hero_home_hint'            => 'Background image behind the home page hero. Recommended ≥ 1600 × 900.',
+        'site_hero_about'                => 'About page banner',
+        'site_hero_about_hint'           => 'Top banner shown on the About page.',
+        'site_hero_for_merchants'        => 'For Merchants hero image',
+        'site_hero_for_merchants_hint'   => 'Background image on the merchant pitch landing page.',
+        'site_intro_home'                => 'Home page intro (HTML)',
+        'site_intro_home_hint'           => 'Optional HTML block shown below the home hero. Plain HTML allowed (admin-only).',
+        'site_intro_about'               => 'About page intro (HTML)',
+        'site_intro_about_hint'          => 'Optional HTML block shown at the top of the About page.',
     ],
     'redemption' => [
         'invalid'       => 'Voucher not found.',
@@ -357,6 +371,17 @@ return [
     ],
 
     'common' => [
+        'upload' => [
+            'banner'        => 'Banner image',
+            'help'          => 'JPG / PNG / WEBP / GIF · max :max MB',
+            'remove'        => 'Remove current image',
+            'url_alt'       => 'or paste an external URL below',
+            'invalid'       => 'Invalid upload.',
+            'too_large'     => 'File too large. Maximum :max MB.',
+            'bad_type'      => 'Unsupported file type. Use JPG, PNG, WEBP or GIF.',
+            'partial'       => 'The file was only partially uploaded. Please try again.',
+            'write_failed'  => 'Failed to save the upload. Check folder permissions.',
+        ],
         'yes'      => 'Yes',
         'no'       => 'No',
         'cancel'   => 'Cancel',

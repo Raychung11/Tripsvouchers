@@ -6,7 +6,14 @@
 <?php else: ?>
   <div class="grid grid-2">
     <?php foreach ($campaigns as $c): ?>
-      <article class="card">
+      <article class="card" style="padding:0; overflow:hidden;">
+        <?php if (!empty($c['banner_image'])): ?>
+          <div class="campaign-thumb"
+               style="background-image: url('<?= e(asset_or_upload($c['banner_image'])) ?>');"></div>
+        <?php else: ?>
+          <div class="campaign-thumb campaign-thumb-fallback"></div>
+        <?php endif; ?>
+        <div style="padding:20px;">
         <div class="flex-between mb-1">
           <span class="pill pill-success"><?= e(__('campaign.types.' . $c['voucher_type'])) ?></span>
           <span class="font-bold" style="color:var(--c-primary-dk);"><?= e(rm($c['voucher_value'])) ?></span>
@@ -21,6 +28,7 @@
           <?= e(__('campaign.ends')) ?>: <?= e($c['end_date'] ?: '—') ?>
         </p>
         <a href="<?= e(url('/campaigns/' . $c['id'])) ?>" class="btn btn-primary btn-block mt-2"><?= e(__('campaign.claim_now')) ?></a>
+        </div>
       </article>
     <?php endforeach; ?>
   </div>

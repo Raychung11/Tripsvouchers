@@ -158,6 +158,20 @@ return [
         'edit'     => '编辑',
         'save'     => '保存',
         'attach_merchant' => '添加商家到活动',
+
+        // Site Settings
+        'site_settings'                  => '站点图片与介绍',
+        'site_settings_intro'            => '上传公共页面的主视觉图片与介绍内容。空字段会回退到默认渐变或翻译。',
+        'site_hero_home'                 => '首页主视觉图',
+        'site_hero_home_hint'            => '首页 Hero 区背景图。建议尺寸 ≥ 1600 × 900。',
+        'site_hero_about'                => '关于页 Banner',
+        'site_hero_about_hint'           => '显示在「关于」页顶部的 Banner。',
+        'site_hero_for_merchants'        => '商家页 Hero 图',
+        'site_hero_for_merchants_hint'   => '商家招募落地页的背景图。',
+        'site_intro_home'                => '首页介绍 (HTML)',
+        'site_intro_home_hint'           => '可选 HTML 区块,显示于首页 Hero 之下。允许 HTML(仅限管理员)。',
+        'site_intro_about'               => '关于页介绍 (HTML)',
+        'site_intro_about_hint'          => '可选 HTML 区块,显示于关于页顶部。',
     ],
     'redemption' => [
         'invalid'       => '优惠券不存在。',
@@ -357,6 +371,17 @@ return [
     ],
 
     'common' => [
+        'upload' => [
+            'banner'        => 'Banner 图片',
+            'help'          => 'JPG / PNG / WEBP / GIF · 上限 :max MB',
+            'remove'        => '移除现有图片',
+            'url_alt'       => '或在下方贴上外部链接',
+            'invalid'       => '上传无效。',
+            'too_large'     => '文件过大,上限 :max MB。',
+            'bad_type'      => '不支持的格式,请使用 JPG / PNG / WEBP / GIF。',
+            'partial'       => '文件只上传了部分,请重试。',
+            'write_failed'  => '无法保存上传文件,请检查文件夹权限。',
+        ],
         'yes'      => '是',
         'no'       => '否',
         'cancel'   => '取消',

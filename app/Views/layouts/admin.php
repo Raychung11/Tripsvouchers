@@ -24,6 +24,7 @@ $active = fn (string $p) => str_starts_with($path, $p) ? 'active' : '';
       <a href="<?= e(url('/admin/redemptions')) ?>" class="<?= $active('/admin/redemptions') ?>"><?= e(__('admin.redemptions')) ?></a>
       <a href="<?= e(url('/admin/wallet')) ?>" class="<?= $active('/admin/wallet') ?>"><?= e(__('admin.wallet')) ?></a>
       <a href="<?= e(url('/admin/analytics')) ?>" class="<?= $active('/admin/analytics') ?>"><?= e(__('admin.analytics')) ?></a>
+      <a href="<?= e(url('/admin/site')) ?>" class="<?= $active('/admin/site') ?>"><?= e(__('admin.site_settings')) ?></a>
       <hr>
       <form method="post" action="<?= e(url('/admin/logout')) ?>">
         <?= csrf_field() ?>

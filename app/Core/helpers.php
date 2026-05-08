@@ -46,6 +46,23 @@ if (!function_exists('asset')) {
     }
 }
 
+if (!function_exists('asset_or_upload')) {
+    /**
+     * Resolve a banner / image reference. Accepts either:
+     * - A full URL (http://… or https://…) — returned unchanged
+     * - A path stored by the upload helper (/uploads/...) — prefixed with APP_URL
+     * - A relative path — prefixed with APP_URL
+     */
+    function asset_or_upload(?string $value): string
+    {
+        if (!$value) return '';
+        if (preg_match('#^https?://#i', $value)) {
+            return $value;
+        }
+        return url(ltrim($value, '/'));
+    }
+}
+
 if (!function_exists('redirect')) {
     function redirect(string $path, int $status = 302): never
     {

@@ -3,6 +3,7 @@
 $sub    = number_format($pricing['subscription'], 0);
 $fee    = number_format($pricing['redemption'], 2);
 $wallet = number_format($pricing['wallet_min'], 0);
+$heroImg = \App\Models\Setting::get('hero_for_merchants_image');
 ?>
 <style>
   .pitch-hero {
@@ -14,6 +15,13 @@ $wallet = number_format($pricing['wallet_min'], 0);
     color: #fff; padding: 72px 24px 56px; text-align: center;
     position: relative; overflow: hidden;
   }
+  <?php if ($heroImg): ?>
+  .pitch-hero {
+    background:
+      linear-gradient(135deg, rgba(15,23,42,.88) 0%, rgba(17,94,89,.78) 60%, rgba(19,78,74,.85) 100%),
+      url('<?= e(asset_or_upload($heroImg)) ?>') center / cover no-repeat;
+  }
+  <?php endif; ?>
   .pitch-hero .eyebrow {
     display: inline-block; padding: 6px 14px; border-radius: 999px;
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);

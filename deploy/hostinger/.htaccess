@@ -22,6 +22,9 @@ DirectoryIndex index.php
     # Map /assets/* -> /public/assets/* (CSS, JS, images live in public/)
     RewriteRule ^assets/(.*)$ public/assets/$1 [L]
 
+    # Map /uploads/* -> /public/uploads/* (admin-uploaded banners + site images)
+    RewriteRule ^uploads/(.*)$ public/uploads/$1 [L]
+
     # Pass through real files / directories
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d

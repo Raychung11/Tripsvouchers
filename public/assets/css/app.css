@@ -293,6 +293,44 @@ textarea { min-height: 100px; }
   .app-side  { display: block; }
 }
 
+/* ───────── Image upload preview ───────── */
+.upload-preview {
+  position: relative; display: inline-block;
+  border: 1px solid var(--c-border); border-radius: var(--r-md);
+  overflow: hidden; background: #f8fafc;
+}
+.upload-preview img {
+  display: block; max-width: 100%; max-height: 220px; object-fit: cover;
+}
+.upload-preview .upload-remove {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; font-size: .85rem; color: var(--c-danger);
+  background: #fff; border-top: 1px solid var(--c-border);
+}
+.upload-preview .upload-remove input { transform: scale(1.1); }
+
+/* ───────── Page banner (about etc.) ───────── */
+.page-banner {
+  width: calc(100% + 32px); margin-left: -16px; margin-right: -16px;
+  height: 220px; background-size: cover; background-position: center;
+  border-radius: 0;
+}
+@media (min-width: 720px) {
+  .page-banner { height: 300px; }
+}
+
+/* ───────── Campaign card thumbnail ───────── */
+.campaign-thumb {
+  width: 100%; aspect-ratio: 16 / 9;
+  background-size: cover; background-position: center;
+  background-color: #e2e8f0;
+}
+.campaign-thumb-fallback {
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(245,158,11,.6), transparent 60%),
+    linear-gradient(135deg, var(--c-primary), var(--c-primary-dk));
+}
+
 /* ───────── Footer ───────── */
 .footer {
   background: linear-gradient(180deg, #0f172a 0%, #020617 100%);

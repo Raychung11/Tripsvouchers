@@ -98,6 +98,9 @@ $router->group(['auth.admin'], function (\App\Core\Router $r) {
     $r->get('/admin/wallet',               [C\Admin\VoucherController::class, 'wallet']);
     $r->get('/admin/analytics',            [C\Admin\AnalyticsController::class, 'index']);
     $r->get('/admin/export/{type}',        [C\Admin\AnalyticsController::class, 'export']);
+
+    $r->get('/admin/site',                 [C\Admin\SiteController::class, 'index']);
+    $r->post('/admin/site',                [C\Admin\SiteController::class, 'save'], ['csrf']);
 });
 
 // ─── Billplz ───────────────────────────────────────────────────────────────
