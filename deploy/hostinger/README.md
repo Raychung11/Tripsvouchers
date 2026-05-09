@@ -72,6 +72,80 @@ public_html/
 Pre-loaded: 8 merchants spanning all wallet status tiers (healthy / warning /
 critical / disabled), 24 vouchers, 15 redemptions.
 
+## Meta (Facebook) ad insights
+
+The admin dashboard pulls ad performance — including **how many people
+clicked the WhatsApp button** on your Click-to-WhatsApp ads — from the
+Meta Marketing API. Live behind `/admin/meta`.
+
+### One-time setup
+
+1. **Run the migration** in phpMyAdmin (the `meta_ad_metrics` table):
+
+   ```sql
+   CREATE TABLE meta_ad_metrics (
+     id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+     date            DATE NOT NULL,
+     campaign_id     VARCHAR(64), campaign_name VARCHAR(255),
+     adset_id        VARCHAR(64), adset_name    VARCHAR(255),
+     ad_id           VARCHAR(64) NOT NULL, ad_name VARCHAR(255),
+     objective       VARCHAR(64),
+     impressions     INT UNSIGNED NOT NULL DEFAULT 0,
+     reach           INT UNSIGNED NOT NULL DEFAULT 0,
+     clicks          INT UNSIGNED NOT NULL DEFAULT 0,
+     link_clicks     INT UNSIGNED NOT NULL DEFAULT 0,
+     spend           DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+     ctr             DECIMAL(8,4) NOT NULL DEFAULT 0.0000,
+     whatsapp_clicks INT UNSIGNED NOT NULL DEFAULT 0,
+     messenger_clicks INT UNSIGNED NOT NULL DEFAULT 0,
+     conversations_started INT UNSIGNED NOT NULL DEFAULT 0,
+     raw_actions     TEXT,
+     synced_at       DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     PRIMARY KEY (id),
+     UNIQUE KEY uniq_meta_metric (date, ad_id),
+     KEY idx_meta_date (date),
+     KEY idx_meta_campaign (campaign_id)
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+   ```
+
+2. **Get a Meta Marketing API access token** (one-time, doesn't expire):
+   - Go to <https://business.facebook.com/settings/system-users>
+   - Create a System User with **Admin** role
+   - Click **Generate New Token**, select your app, tick `ads_read`
+   - Copy the token (you only see it once)
+
+3. **Get your Ad Account ID** from <https://adsmanager.facebook.com> — top
+   left dropdown shows the numeric ID. Strip any `act_` prefix.
+
+4. **Add to `public_html/.env`:**
+
+   ```
+   META_ACCESS_TOKEN=EAAB...your-token...
+   META_AD_ACCOUNT_ID=1234567890
+   META_API_VERSION=v21.0
+   META_CRON_TOKEN=any-long-random-string
+   ```
+
+5. **Open** `https://your-domain/admin/meta` and click **Sync now**.
+
+### Daily auto-sync (optional)
+
+In hPanel → Advanced → Cron Jobs, add a daily job:
+
+```
+0 2 * * * curl -s "https://your-domain/admin/meta/sync?token=YOUR_META_CRON_TOKEN&days=7" >/dev/null
+```
+
+The endpoint returns plain text and is safe to hit from cron — no
+session needed, just the secret token from `.env`.
+
+### Demo mode
+
+If you don't add `META_ACCESS_TOKEN`, the **Sync now** button still
+works — it loads 30 days of plausible synthetic data so the dashboard
+demo is populated. Useful for the sales pitch before the real ad
+account is wired up.
+
 ## Image uploads
 
 The admin can upload campaign banners, location banners, and platform

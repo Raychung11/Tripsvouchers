@@ -77,6 +77,16 @@ return [
         'model'   => env('OPENAI_MODEL', 'gpt-4o-mini'),
     ],
 
+    // Meta (Facebook) Marketing API — sync ad performance + WhatsApp clicks
+    // into the admin dashboard. Falls back to demo data if no token is set.
+    'meta' => [
+        'access_token'   => env('META_ACCESS_TOKEN', ''),
+        'ad_account_id'  => env('META_AD_ACCOUNT_ID', ''),     // numeric, no `act_` prefix
+        'api_version'    => env('META_API_VERSION', 'v21.0'),
+        // Secret used to authorise GET /admin/meta/sync from a cron job
+        'cron_token'     => env('META_CRON_TOKEN', ''),
+    ],
+
     'lang' => [
         'default'   => env('DEFAULT_LANG', 'ms'),
         'available' => ['en', 'zh', 'ms'],

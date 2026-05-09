@@ -101,7 +101,13 @@ $router->group(['auth.admin'], function (\App\Core\Router $r) {
 
     $r->get('/admin/site',                 [C\Admin\SiteController::class, 'index']);
     $r->post('/admin/site',                [C\Admin\SiteController::class, 'save'], ['csrf']);
+
+    $r->get('/admin/meta',                 [C\Admin\MetaController::class, 'index']);
+    $r->post('/admin/meta/sync',           [C\Admin\MetaController::class, 'sync'], ['csrf']);
 });
+
+// Cron-triggered Meta sync (auth via ?token=META_CRON_TOKEN)
+$router->get('/admin/meta/sync',           [C\Admin\MetaController::class, 'cronSync']);
 
 // ─── Billplz ───────────────────────────────────────────────────────────────
 $router->post('/billplz/callback',         [C\BillplzController::class, 'callback']);

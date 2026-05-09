@@ -5,6 +5,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS audit_logs;
+DROP TABLE IF EXISTS meta_ad_metrics;
 DROP TABLE IF EXISTS site_settings;
 DROP TABLE IF EXISTS redemptions;
 DROP TABLE IF EXISTS vouchers;
@@ -219,6 +220,41 @@ CREATE TABLE site_settings (
   `value`      TEXT,
   `updated_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ─── meta_ad_metrics ──────────────────────────────────────────────────────
+-- Daily Meta (Facebook) ad insights cached locally so the admin dashboard
+-- doesn't hit the Marketing API on every page load. One row per (date, ad_id).
+-- The raw_actions JSON keeps the full Meta `actions` array so we can extract
+-- additional metrics later without re-syncing.
+CREATE TABLE meta_ad_metrics (
+  id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  date            DATE NOT NULL,
+  campaign_id     VARCHAR(64)  DEFAULT NULL,
+  campaign_name   VARCHAR(255) DEFAULT NULL,
+  adset_id        VARCHAR(64)  DEFAULT NULL,
+  adset_name      VARCHAR(255) DEFAULT NULL,
+  ad_id           VARCHAR(64)  NOT NULL,
+  ad_name         VARCHAR(255) DEFAULT NULL,
+  objective       VARCHAR(64)  DEFAULT NULL,
+  -- Headline metrics
+  impressions     INT UNSIGNED NOT NULL DEFAULT 0,
+  reach           INT UNSIGNED NOT NULL DEFAULT 0,
+  clicks          INT UNSIGNED NOT NULL DEFAULT 0,
+  link_clicks     INT UNSIGNED NOT NULL DEFAULT 0,
+  spend           DECIMAL(12,2) NOT NULL DEFAULT 0.00,
+  ctr             DECIMAL(8,4)  NOT NULL DEFAULT 0.0000,
+  -- WhatsApp / Messenger conversation metrics
+  whatsapp_clicks               INT UNSIGNED NOT NULL DEFAULT 0,
+  messenger_clicks              INT UNSIGNED NOT NULL DEFAULT 0,
+  conversations_started         INT UNSIGNED NOT NULL DEFAULT 0,
+  -- Full actions array for forensics / future metrics
+  raw_actions     TEXT,
+  synced_at       DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uniq_meta_metric (date, ad_id),
+  KEY idx_meta_date (date),
+  KEY idx_meta_campaign (campaign_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ─── audit_logs ───────────────────────────────────────────────────────────
