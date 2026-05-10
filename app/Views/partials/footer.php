@@ -12,6 +12,7 @@
   </div>
 </main>
 <?= (new \App\Core\View())->partial('footer_block') ?>
+<?= (new \App\Core\View())->partial('mobile_nav') ?>
 <?= \App\Core\View::popScripts() ?>
 <script src="<?= e(asset('js/app.js')) ?>"></script>
 </body>

@@ -16,6 +16,7 @@ return [
         'logout'    => 'Logout',
         'admin'     => 'Admin',
         'merchant_portal' => 'Merchant Portal',
+        'more'      => 'More',
     ],
     'home' => [
         'hero_title'    => 'Discover Malaysia. Claim Tourism Vouchers.',

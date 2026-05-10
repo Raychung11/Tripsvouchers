@@ -16,6 +16,7 @@ return [
         'logout'    => 'Log keluar',
         'admin'     => 'Pentadbir',
         'merchant_portal' => 'Portal Peniaga',
+        'more'      => 'Lagi',
     ],
     'home' => [
         'hero_title'    => 'Terokai Malaysia. Tuntut Baucar Pelancongan.',

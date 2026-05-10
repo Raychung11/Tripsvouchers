@@ -37,6 +37,7 @@ $active = fn (string $p) => str_starts_with($path, $p) ? 'active' : '';
       <?= $content ?>
     </main>
   </div>
+  <?= (new \App\Core\View())->partial('mobile_nav') ?>
   <?= \App\Core\View::popScripts() ?>
   <script src="<?= e(asset('js/app.js')) ?>"></script>
 </body>

@@ -16,6 +16,7 @@ return [
         'logout'    => '退出',
         'admin'     => '管理后台',
         'merchant_portal' => '商家中心',
+        'more'      => '更多',
     ],
     'home' => [
         'hero_title'    => '探索马来西亚,领取旅游优惠券',
