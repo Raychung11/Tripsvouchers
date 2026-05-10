@@ -125,6 +125,41 @@ if ($heroImg) {
   .hp-view-all {
     text-align: center; margin: 18px 0 0;
   }
+
+  /* ── How it works (compact, mobile-friendly) ───────────────────────── */
+  .hp-how {
+    display: grid; gap: 8px;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* When there are exactly 3 items and we're at <720px, the 3rd spans both columns */
+  .hp-how .hp-how-item:nth-child(3):nth-last-child(1) { grid-column: 1 / -1; }
+  @media (min-width: 720px) {
+    .hp-how { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .hp-how .hp-how-item:nth-child(3):nth-last-child(1) { grid-column: auto; }
+  }
+  .hp-how-item {
+    display: flex; align-items: center; gap: 10px;
+    background: #fff; border: 1px solid var(--c-border);
+    border-radius: 12px; padding: 10px 12px;
+    min-height: 56px;
+  }
+  .hp-how-item .num {
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--c-primary, #0d9488), var(--c-accent, #f59e0b));
+    color: #fff; display: grid; place-items: center;
+    font-weight: 800; font-size: .82rem;
+    box-shadow: 0 2px 6px rgba(13,148,136,.3);
+  }
+  .hp-how-item .txt {
+    font-size: .85rem; line-height: 1.3; color: var(--c-text);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media (min-width: 720px) {
+    .hp-how-item { padding: 14px 16px; min-height: 72px; }
+    .hp-how-item .num { width: 34px; height: 34px; font-size: .95rem; }
+    .hp-how-item .txt { font-size: .95rem; }
+  }
 </style>
 
 <section class="hero" style="<?= $heroStyle ?>">
@@ -210,18 +245,18 @@ if ($heroImg) {
 <?php endif; ?>
 
 <h2 class="mt-4 mb-2"><?= e(__('home.how_title')) ?></h2>
-<div class="grid grid-3">
-  <div class="card">
-    <div class="brand-logo" style="margin-bottom:8px;">1</div>
-    <h3><?= e(__('home.how_step1')) ?></h3>
+<div class="hp-how">
+  <div class="hp-how-item">
+    <span class="num">1</span>
+    <span class="txt"><?= e(__('home.how_step1')) ?></span>
   </div>
-  <div class="card">
-    <div class="brand-logo" style="margin-bottom:8px;">2</div>
-    <h3><?= e(__('home.how_step2')) ?></h3>
+  <div class="hp-how-item">
+    <span class="num">2</span>
+    <span class="txt"><?= e(__('home.how_step2')) ?></span>
   </div>
-  <div class="card">
-    <div class="brand-logo" style="margin-bottom:8px;">3</div>
-    <h3><?= e(__('home.how_step3')) ?></h3>
+  <div class="hp-how-item">
+    <span class="num">3</span>
+    <span class="txt"><?= e(__('home.how_step3')) ?></span>
   </div>
 </div>
 
