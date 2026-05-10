@@ -23,6 +23,12 @@ $router->get('/claim/{campaign}',          [C\VoucherController::class, 'claimFo
 $router->post('/claim/{campaign}',         [C\VoucherController::class, 'claim'], ['csrf']);
 $router->get('/voucher/{code}',            [C\VoucherController::class, 'show']);
 
+// Visitor "my vouchers" — phone-based lookup (no password)
+$router->get('/my',                        [C\VisitorController::class, 'index']);
+$router->post('/my',                       [C\VisitorController::class, 'login'], ['csrf']);
+$router->get('/my/vouchers',               [C\VisitorController::class, 'dashboard']);
+$router->post('/my/logout',                [C\VisitorController::class, 'logout'], ['csrf']);
+
 // Voucher redemption (merchant scans this URL)
 $router->get('/redeem',                    [C\VoucherController::class, 'redeemPreview']);
 

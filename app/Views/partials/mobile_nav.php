@@ -20,9 +20,10 @@ $lang = \App\Core\Lang::current();
 $backUrl = urlencode($_SERVER['REQUEST_URI'] ?? '/');
 
 $isActive = function (string $url) use ($path): bool {
-    if ($url === '/')        return $path === '/';
+    if ($url === '/')         return $path === '/';
     if ($url === '/admin')    return $path === '/admin' || $path === '/admin/dashboard';
     if ($url === '/merchant') return $path === '/merchant' || $path === '/merchant/dashboard';
+    if ($url === '/my')       return $path === '/my' || $path === '/my/vouchers' || str_starts_with($path, '/my/');
     return $path === $url || str_starts_with($path, $url . '/');
 };
 
@@ -58,20 +59,25 @@ if ($role === 'admin' || $role === 'gov') {
     ];
     $logoutUrl = '/merchant/logout';
 } else {
+    // Visitor (anonymous or signed in via /my)
     $tabs = [
         ['url' => '/',           'icon' => '🏠', 'label' => __('nav.home')],
         ['url' => '/campaigns',  'icon' => '🎫', 'label' => __('nav.campaigns')],
-        ['url' => '/chat',       'icon' => '💬', 'label' => __('nav.chat'),     'primary' => true],
-        ['url' => '/merchants',  'icon' => '🏪', 'label' => __('nav.merchants')],
+        ['url' => '/chat',       'icon' => '💬', 'label' => __('nav.chat'),         'primary' => true],
+        ['url' => '/my',         'icon' => '🎟', 'label' => __('nav.my_vouchers')],
     ];
     $more = [
+        ['url' => '/merchants',     'label' => __('nav.merchants')],
         ['url' => '/for-merchants', 'label' => __('for_merchants.nav')],
         ['url' => '/about',         'label' => __('nav.about')],
         ['url' => '/contact',       'label' => __('footer.col_contact')],
-        ['url' => '/merchant/login','label' => __('nav.login')],
-        ['url' => '/admin/login',   'label' => __('nav.admin')],
+        ['url' => '/privacy',       'label' => __('footer.link_privacy')],
+        ['url' => '/terms',         'label' => __('footer.link_terms')],
+        ['url' => '/merchant/login','label' => __('merchant.login_title')],
+        ['url' => '/admin/login',   'label' => __('admin.login_title')],
     ];
-    $logoutUrl = null;
+    // Visitor "logout" — only show when /my session is active
+    $logoutUrl = !empty($_SESSION['visitor_phone_last9']) ? '/my/logout' : null;
 }
 
 $languages = [

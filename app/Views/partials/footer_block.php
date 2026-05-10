@@ -83,6 +83,13 @@ $social = $company['social'] ?? [];
 .footer-bottom-right { display: flex; gap: 16px; flex-wrap: wrap; }
 .footer-bottom-right a { color: #94a3b8; font-size: .8rem; }
 .footer-bottom-right a:hover { color: #fff; }
+
+/* Hide the full footer on mobile — the bottom tab bar + More sheet
+   already cover navigation, and Privacy / Terms / Contact are in the
+   More sheet too. Anything legal-critical still ships in the More sheet. */
+@media (max-width: 879px) {
+  .footer { display: none; }
+}
 </style>
 
 <footer class="footer" role="contentinfo">
