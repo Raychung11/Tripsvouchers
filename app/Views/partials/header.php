@@ -34,9 +34,12 @@ $description = $description ?? __('app.tagline');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0d9488">
+  <meta name="theme-color" content="#0D47A1">
   <title><?= e($pageTitle) ?></title>
   <meta name="description" content="<?= e($description) ?>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">
   <?php if (!empty($extra_head)) echo $extra_head; ?>
 </head>

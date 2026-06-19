@@ -35,8 +35,8 @@ $social = $company['social'] ?? [];
 .footer-brand { display: flex; flex-direction: column; gap: 14px; }
 .footer-brand-row { display: inline-flex; align-items: center; gap: 10px;
   color: #fff; align-self: flex-start; text-decoration: none; }
-.footer-brand-row .brand-logo { width: 36px; height: 36px; border-radius: 8px;
-  background: linear-gradient(135deg, #0d9488, #f59e0b);
+.footer-brand-row .brand-logo { width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #0D47A1, #66BB6A);
   color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
 .footer-brand-row strong { font-size: 1.05rem; color: #fff; }
 .footer-tagline { color: #94a3b8; line-height: 1.55; margin: 0;
@@ -50,7 +50,7 @@ $social = $company['social'] ?? [];
 .footer-social a { width: 36px; height: 36px; border-radius: 50%;
   background: rgba(255,255,255,.06); display: inline-grid; place-items: center;
   color: #cbd5e1; transition: background .15s ease, color .15s ease, transform .15s ease; }
-.footer-social a:hover { background: #0d9488; color: #fff; transform: translateY(-2px); }
+.footer-social a:hover { background: #0D47A1; color: #fff; transform: translateY(-2px); }
 
 .footer-col h4 { color: #fff; font-size: .78rem; margin: 0 0 14px;
   text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }

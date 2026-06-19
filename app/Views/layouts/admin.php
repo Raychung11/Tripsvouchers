@@ -7,8 +7,11 @@ $active = fn (string $p) => str_starts_with($path, $p) ? 'active' : '';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0D47A1">
   <title><?= e(($title ?? __('admin.dashboard')) . ' · Admin · ' . __('app.name')) ?></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="<?= e(asset('css/app.css')) ?>">
 </head>
 <body>

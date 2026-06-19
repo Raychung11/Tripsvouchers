@@ -6,7 +6,7 @@
     $bannerImg = $campaign['banner_image'] ?? null;
     $bannerCss = 'linear-gradient(135deg, var(--c-primary), var(--c-accent))';
     if ($bannerImg) {
-        $bannerCss = 'linear-gradient(135deg, rgba(13,148,136,.78), rgba(245,158,11,.78)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
+        $bannerCss = 'linear-gradient(135deg, rgba(13,71,161,.82), rgba(102,187,106,.78)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
     }
     ?>
     <div style="background: <?= $bannerCss ?>; color:#fff; padding:24px;">

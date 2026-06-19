@@ -114,24 +114,24 @@ $languages = [
   font-family: inherit; font-size: .68rem;
   position: relative;
   transition: color .15s ease;
-  -webkit-tap-highlight-color: rgba(13,148,136,.2);
+  -webkit-tap-highlight-color: rgba(13,71,161,.2);
 }
-.mn-tab:hover, .mn-tab:focus-visible { color: var(--c-primary, #0d9488); text-decoration: none; outline: none; }
-.mn-tab.active { color: var(--c-primary, #0d9488); }
+.mn-tab:hover, .mn-tab:focus-visible { color: var(--c-primary, #0D47A1); text-decoration: none; outline: none; }
+.mn-tab.active { color: var(--c-primary, #0D47A1); }
 .mn-tab.active::before {
   content: ''; position: absolute; top: 0; left: 50%;
   transform: translateX(-50%);
   width: 28px; height: 3px;
-  background: var(--c-primary, #0d9488);
+  background: var(--c-primary, #0D47A1);
   border-radius: 0 0 4px 4px;
 }
 .mn-icon { font-size: 1.45rem; line-height: 1; }
 .mn-label { font-size: .68rem; font-weight: 500; line-height: 1.1; }
 .mn-tab.primary .mn-icon {
-  background: linear-gradient(135deg, #0d9488, #f59e0b);
+  background: linear-gradient(135deg, #0D47A1, #66BB6A);
   color: #fff; width: 44px; height: 44px; border-radius: 50%;
   display: grid; place-items: center;
-  box-shadow: 0 4px 14px rgba(13,148,136,.35);
+  box-shadow: 0 4px 14px rgba(13,71,161,.30);
   margin-top: -16px;  /* lift the FAB-ish primary action */
 }
 .mn-tab.primary { padding-top: 18px; }
@@ -174,7 +174,7 @@ $languages = [
   font-family: inherit; cursor: pointer; text-align: left;
 }
 .ms-list a:hover, .ms-list button:hover { background: #f1f5f9; text-decoration: none; }
-.ms-list a.active { background: var(--c-primary-lt, #ccfbf1); color: var(--c-primary-dk, #0f766e); font-weight: 600; }
+.ms-list a.active { background: var(--c-primary-lt, #EAF6FF); color: var(--c-primary-dk, #093479); font-weight: 600; }
 .ms-list .arrow { margin-left: auto; color: #94a3b8; }
 .ms-langs { display: flex; gap: 6px; flex-wrap: wrap; padding: 4px; }
 .ms-langs a {
@@ -182,7 +182,7 @@ $languages = [
   padding: 10px; border-radius: 10px; background: #f1f5f9;
   font-size: .9rem; color: #0f172a; text-decoration: none;
 }
-.ms-langs a.active { background: var(--c-primary, #0d9488); color: #fff; }
+.ms-langs a.active { background: var(--c-primary, #0D47A1); color: #fff; }
 .ms-logout { border-top: 1px solid var(--c-border, #e5e7eb); margin-top: 12px; padding-top: 8px; }
 .ms-logout button { color: #dc2626; font-weight: 600; }
 

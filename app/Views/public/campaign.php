@@ -3,7 +3,7 @@
 $bannerImg  = $campaign['banner_image'] ?? null;
 $bannerCss  = 'linear-gradient(135deg, var(--c-primary), var(--c-primary-dk))';
 if ($bannerImg) {
-    $bannerCss = 'linear-gradient(135deg, rgba(13,148,136,.78), rgba(15,118,110,.85)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
+    $bannerCss = 'linear-gradient(135deg, rgba(13,71,161,.82), rgba(9,52,121,.88)), url(\'' . e(asset_or_upload($bannerImg)) . '\') center / cover no-repeat';
 }
 ?>
 <article class="card" style="overflow:hidden; padding:0;">

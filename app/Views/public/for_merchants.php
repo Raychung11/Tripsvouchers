@@ -11,7 +11,7 @@ $heroImg = \App\Models\Setting::get('hero_for_merchants_image');
     background:
       radial-gradient(circle at 80% -20%, rgba(245, 158, 11, .35), transparent 55%),
       radial-gradient(circle at -10% 110%, rgba(13, 148, 136, .35), transparent 55%),
-      linear-gradient(135deg, #0f172a 0%, #115e59 60%, #134e4a 100%);
+      linear-gradient(135deg, #0f172a 0%, #093479 60%, #062459 100%);
     color: #fff; padding: 72px 24px 56px; text-align: center;
     position: relative; overflow: hidden;
   }
@@ -92,7 +92,7 @@ $heroImg = \App\Models\Setting::get('hero_for_merchants_image');
     width: 44px; height: 44px; border-radius: 50%;
     background: var(--c-primary); color: #fff;
     display: grid; place-items: center; font-weight: 800; font-size: 1.2rem;
-    box-shadow: 0 6px 16px rgba(13,148,136,.35);
+    box-shadow: 0 6px 16px rgba(13,71,161,.35);
   }
 
   .pricing-grid {
@@ -106,7 +106,7 @@ $heroImg = \App\Models\Setting::get('hero_for_merchants_image');
   }
   .price-card.highlighted {
     border-color: var(--c-primary);
-    box-shadow: 0 14px 30px rgba(13,148,136,.18);
+    box-shadow: 0 14px 30px rgba(13,71,161,.18);
     transform: translateY(-4px);
   }
   .price-card .amount { font-size: 2.4rem; font-weight: 800; color: var(--c-primary-dk); }
@@ -170,7 +170,7 @@ $heroImg = \App\Models\Setting::get('hero_for_merchants_image');
 
   .final-cta {
     margin: 48px -16px 0;
-    background: linear-gradient(135deg, var(--c-primary) 0%, #115e59 100%);
+    background: linear-gradient(135deg, var(--c-primary) 0%, #093479 100%);
     color: #fff; padding: 56px 24px; text-align: center;
     border-radius: 0;
   }
