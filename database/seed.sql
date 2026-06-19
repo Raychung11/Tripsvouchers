@@ -281,3 +281,97 @@ INSERT INTO merchant_wallet_transactions (merchant_id, type, amount, balance_bef
 
   (6, 'redemption', -1.50, 130.00, 128.50, 'Voucher SLV-SPRG-2026-0004DD', 'redemption', 14, DATE_SUB(NOW(), INTERVAL 10 DAY)),
   (6, 'redemption', -1.50, 128.50, 127.00, 'Voucher SLV-SPRG-2026-0005EE', 'redemption', 15, DATE_SUB(NOW(), INTERVAL  6 DAY));
+
+-- ─────────────────────────────────────────────────────────────────────────
+-- ADDITIONAL BENTONG TRAVEL SPOTS
+-- 4 sub-zones (location_id 2–5) + 8 more campaigns (id 6–13) covering
+-- the full breadth of Bentong tourism. These campaigns appear in the
+-- public homepage grid + /campaigns list — visitors can browse and
+-- claim, although some don't have merchants attached yet (intentional —
+-- the officer's tourism board can recruit and attach more participants
+-- after the pilot launches).
+-- ─────────────────────────────────────────────────────────────────────────
+
+-- Sub-zones within Bentong (location_id 2–5)
+INSERT INTO locations (state, city, area_name, slug, description, banner_image, map_link, status) VALUES
+  ('Pahang', 'Bentong', 'Bukit Tinggi & Berjaya Hills', 'bukit-tinggi',
+   'French-themed Colmar Tropicale, the tranquil Japanese Village with its onsen and zen garden, the Botanical Garden and Rabbit Park — all 800m above sea level in misty mountain air.',
+   NULL, 'https://maps.google.com/?q=Berjaya+Hills+Bukit+Tinggi', 'active'),
+  ('Pahang', 'Bentong', 'Chamang Recreational Area', 'chamang-area',
+   'Home to Chamang Waterfall, natural hot springs, and shaded jungle picnic spots — a short scenic drive from Pekan Bentong.',
+   NULL, 'https://maps.google.com/?q=Chamang+Waterfall+Bentong', 'active'),
+  ('Pahang', 'Bentong', 'Lentang & Genting Sempah Highlands', 'lentang-genting-sempah',
+   'Lentang Recreational Forest with its emerald jungle trails, Genting Sempah viewpoint over the highlands, and the famous cool-air highland brunch cafes on the road to Genting.',
+   NULL, 'https://maps.google.com/?q=Lentang+Recreational+Forest', 'active'),
+  ('Pahang', 'Bentong', 'Pekan Bentong Heritage Core', 'pekan-bentong-heritage',
+   'Old shophouses on Jalan Loke Yew, the Sun Yat Sen Museum, the iconic Bentong Walk shopping street, heritage kopitiams, and the bustling morning wet market.',
+   NULL, 'https://maps.google.com/?q=Pekan+Bentong', 'active');
+
+-- 8 additional Bentong tourism campaigns (id 6–13)
+INSERT INTO campaigns (location_id, campaign_name, slug, description, voucher_type, voucher_value, start_date, end_date, claim_limit, terms, status) VALUES
+  -- Campaign 6 · Bukit Tinggi
+  (2, 'Colmar Tropicale French Village Discovery', 'colmar-tropicale-discovery',
+   'RM12 off entry to Colmar Tropicale — Malaysia''s authentic French-themed mountain village. Cobblestone streets, half-timbered houses, hand-painted shopfronts and the famous La Cigogne Restaurant overlooking the misty hills of Bukit Tinggi.',
+   'discount', 12.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 90 DAY), 250,
+   'Single use per voucher. Valid daily 9am – 7pm. Not stackable with other promotions. Children below 4 enter free regardless.',
+   'active'),
+
+  -- Campaign 7 · Bukit Tinggi
+  (2, 'Japanese Village Berjaya Hills Onsen Pass', 'japanese-village-onsen',
+   'Free entry to the tranquil Japanese Village at Berjaya Hills — authentic onsen hot bath, koi pond reflections, tea ceremony pavilion and the famous zen rock garden, 800m above sea level.',
+   'experience', 20.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 75 DAY), 100,
+   'Weekend-only redemption (Sat-Sun). Onsen towel + yukata provided on-site. Children must be accompanied. Closed during heavy rain.',
+   'active'),
+
+  -- Campaign 8 · Chamang Area
+  (3, 'Chamang Hot Spring Family Day Pass', 'chamang-hot-spring-family',
+   'RM8 off family entry (2 adults + 2 children) to Chamang natural hot spring. Soak in mineral-rich geothermal waters surrounded by quiet Pahang rainforest.',
+   'discount', 8.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 60 DAY), 150,
+   'Valid daily 10am – 9pm. One voucher per family per visit. Bring your own swimwear and towel. Children below 6 enter free.',
+   'active'),
+
+  -- Campaign 9 · Lentang Forest
+  (4, 'Lentang Forest Eco-Picnic Voucher', 'lentang-forest-picnic',
+   'Free eco-picnic kit (reusable mat, locally-sourced kuih, and a cool jungle herbal drink) for your day at Lentang Recreational Forest. Perfect for families and weekend nature escapes.',
+   'free_gift', 10.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 60 DAY), 100,
+   'Collect at the Lentang ranger station between 8am – 4pm. One kit per family unit. Please carry out all rubbish.',
+   'active'),
+
+  -- Campaign 10 · Genting Sempah
+  (4, 'Genting Sempah Cool Highland Brunch', 'genting-sempah-brunch',
+   'RM12 off weekend brunch at participating Genting Sempah highland cafes. Wake up to misty mountain views and freshly-roasted Bentong coffee — the perfect detour on the way up to Genting Highlands.',
+   'discount', 12.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 75 DAY), 200,
+   'Valid weekends (Sat-Sun) 8am – 12pm only. Minimum spend RM30. Limited to participating cafes displaying the SLV badge.',
+   'active'),
+
+  -- Campaign 11 · Pekan Bentong Heritage
+  (5, 'Bentong Wet Market Local Bite Tour', 'bentong-wet-market-tour',
+   'Buy 1 Free 1 local breakfast (nasi lemak, chee cheong fun, or mee kunjang) at participating Bentong morning wet market stalls. Early bird foodies only — open from 6am.',
+   'b1f1', 6.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 45 DAY), 200,
+   'Valid mornings 6am – 10am only. One voucher per customer per visit. Dine-in or takeaway. Closed on Mondays.',
+   'active'),
+
+  -- Campaign 12 · Pekan Bentong Heritage
+  (5, 'Sun Yat Sen Museum Heritage Walk', 'sun-yat-sen-heritage-walk',
+   'Free 90-minute guided heritage walk through Pekan Bentong''s old shophouses, ending at the Sun Yat Sen Museum. Discover Bentong''s tin-mining past and the revolutionary leader''s historic visit.',
+   'tourism', 5.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 60 DAY), 80,
+   'Walks depart 9am on Saturdays only from the Bentong Walk archway. Wear comfortable shoes. Museum entry included.',
+   'active'),
+
+  -- Campaign 13 · Bentong Town & Highlands (back to main location)
+  (1, 'Bentong Bee Gallery & Honey Tasting', 'bentong-bee-gallery-honey',
+   'Visit the Bentong Bee Gallery and sample five varieties of premium kelulut (stingless bee) honey harvested from local jungles. Take home a small honey jar as a souvenir.',
+   'experience', 8.00, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 90 DAY), 150,
+   'Open daily 9am – 5pm. Tasting session lasts ~45 minutes. Family-friendly. Honey allergy disclaimer applies.',
+   'active');
+
+-- ─── Cross-link existing merchants to relevant new campaigns ─────────────
+-- Gives the new campaigns at least one participating merchant where
+-- thematic fit is obvious (so redemption flow can work end-to-end).
+INSERT INTO campaign_merchants (campaign_id, merchant_id, status) VALUES
+  (8,  4, 'active'),  -- Chamang Hot Spring Family Pass  → Chamang Waterfall Adventures
+  (10, 3, 'active'),  -- Genting Sempah Brunch           → Hai Lam Heritage Kopitiam
+  (11, 7, 'active'),  -- Bentong Wet Market Tour         → Pekan Bentong Souvenir House
+  (12, 3, 'active'),  -- Sun Yat Sen Heritage Walk       → Hai Lam Heritage Kopitiam
+  (13, 1, 'active'),  -- Bentong Bee Gallery & Honey     → Restoran Lou Wong Bentong
+  (13, 7, 'active');  -- Bentong Bee Gallery & Honey     → Pekan Bentong Souvenir House
