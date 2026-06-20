@@ -75,7 +75,9 @@ class VisitorController extends Controller
 
         $rows = Database::all(
             "SELECT v.*, c.campaign_name, c.voucher_value, c.voucher_type,
-                    l.area_name AS location_name, l.state AS location_state
+                    c.banner_image AS campaign_banner,
+                    l.area_name AS location_name, l.state AS location_state,
+                    l.banner_image AS location_banner
              FROM vouchers v
              JOIN campaigns c ON c.id = v.campaign_id
              LEFT JOIN locations l ON l.id = c.location_id
