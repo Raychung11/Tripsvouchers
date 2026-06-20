@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 
 use App\Core\Controller;
 use App\Core\Database;
+use App\Core\Upload;
 use App\Models\Campaign;
 use App\Models\Location;
 
@@ -35,6 +36,16 @@ class LocationController extends Controller
             flash_input($data);
             redirect('/admin/locations/create');
         }
+        try {
+            $uploaded = Upload::imageOrNull($_FILES['banner_file'] ?? null, 'locations');
+            if ($uploaded) {
+                $data['banner_image'] = $uploaded;
+            }
+        } catch (\RuntimeException $e) {
+            flash('error', $e->getMessage());
+            flash_input($data);
+            redirect('/admin/locations/create');
+        }
         $slug = Campaign::slugify($data['area_name']);
         Database::insert(
             'INSERT INTO locations (state, city, area_name, slug, description, banner_image, map_link, status)
@@ -60,7 +71,27 @@ class LocationController extends Controller
     public function update(array $params): void
     {
         $id = (int) $params['id'];
+        $existing = Location::find($id);
         $data = $this->collect();
+        try {
+            $uploaded = Upload::imageOrNull($_FILES['banner_file'] ?? null, 'locations');
+            if ($uploaded) {
+                if (!empty($existing['banner_image'])) {
+                    Upload::delete($existing['banner_image']);
+                }
+                $data['banner_image'] = $uploaded;
+            } elseif ($this->input('banner_remove') === '1') {
+                if (!empty($existing['banner_image'])) {
+                    Upload::delete($existing['banner_image']);
+                }
+                $data['banner_image'] = '';
+            } elseif ($data['banner_image'] === '' && !empty($existing['banner_image'])) {
+                $data['banner_image'] = (string) $existing['banner_image'];
+            }
+        } catch (\RuntimeException $e) {
+            flash('error', $e->getMessage());
+            redirect('/admin/locations/' . $id . '/edit');
+        }
         Database::run(
             'UPDATE locations SET state=?, city=?, area_name=?, description=?, banner_image=?, map_link=?, status=? WHERE id = ?',
             [$data['state'], $data['city'] ?: null, $data['area_name'], $data['description'] ?: null,

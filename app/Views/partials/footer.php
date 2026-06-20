@@ -1,16 +1,19 @@
-<footer class="footer">
-  <div class="footer-inner">
-    <div>
-      <strong><?= e(__('app.name')) ?></strong> · <?= e(__('app.tagline')) ?>
-    </div>
-    <div>
-      <a href="<?= e(url('/about')) ?>"><?= e(__('nav.about')) ?></a> ·
-      <a href="<?= e(url('/merchant/login')) ?>"><?= e(__('nav.merchant_portal')) ?></a> ·
-      <a href="<?= e(url('/admin/login')) ?>"><?= e(__('nav.admin')) ?></a>
-    </div>
-    <div class="footer-credit">
-      <?= e(__('app.positioning')) ?><br>
-      <?= e(__('common.powered_by')) ?> &middot; &copy; <?= date('Y') ?>
-    </div>
+<?php
+/**
+ * Standalone full-document footer.
+ *
+ * Closes the <main><div class="container"> opened in partials/header.php,
+ * renders the visible footer block, flushes any pushed scripts, loads the
+ * shared app.js bundle and closes </body></html>.
+ *
+ * See partials/header.php for usage examples.
+ */
+?>
   </div>
-</footer>
+</main>
+<?= (new \App\Core\View())->partial('footer_block') ?>
+<?= (new \App\Core\View())->partial('mobile_nav') ?>
+<?= \App\Core\View::popScripts() ?>
+<script src="<?= e(asset('js/app.js')) ?>"></script>
+</body>
+</html>

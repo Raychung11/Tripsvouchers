@@ -2,7 +2,7 @@
 <style>
   @media print { .topbar, .footer, .app-side, .no-print { display: none !important; } .app-main { padding: 0 !important; } }
   .poster {
-    max-width: 720px; margin: 0 auto; background: linear-gradient(160deg, #0d9488 0%, #f59e0b 100%);
+    max-width: 720px; margin: 0 auto; background: linear-gradient(160deg, #0D47A1 0%, #66BB6A 100%);
     color: #fff; border-radius: 18px; padding: 40px; text-align: center;
   }
   .poster .qr-card { background: #fff; padding: 16px; border-radius: 16px; display: inline-block; margin: 24px auto; }

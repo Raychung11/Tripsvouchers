@@ -1,14 +1,33 @@
 <?php /** @var array $rows */ ?>
+<style>
+  .cmp-thumb {
+    width: 64px; height: 40px; border-radius: 8px;
+    background-size: cover; background-position: center;
+    background-color: #e2e8f0; display: inline-block;
+  }
+  .cmp-thumb.fallback {
+    background-image:
+      radial-gradient(circle at 30% 30%, rgba(102,187,106,.6), transparent 60%),
+      linear-gradient(135deg, var(--c-primary, #0D47A1), var(--c-primary-dk, #093479));
+  }
+</style>
 <div class="flex-between">
   <h1 class="mt-0"><?= e(__('admin.campaigns')) ?></h1>
   <a href="<?= e(url('/admin/campaigns/create')) ?>" class="btn btn-primary">+ <?= e(__('admin.create')) ?></a>
 </div>
 <div class="card">
   <div class="table-wrap"><table class="table">
-    <thead><tr><th>Name</th><th>Location</th><th>Type</th><th>Value</th><th>Period</th><th>Status</th><th></th></tr></thead>
+    <thead><tr><th></th><th>Name</th><th>Location</th><th>Type</th><th>Value</th><th>Period</th><th>Status</th><th></th></tr></thead>
     <tbody>
       <?php foreach ($rows as $c): ?>
         <tr>
+          <td>
+            <?php if (!empty($c['banner_image'])): ?>
+              <span class="cmp-thumb" style="background-image: url('<?= e(asset_or_upload($c['banner_image'])) ?>');"></span>
+            <?php else: ?>
+              <span class="cmp-thumb fallback"></span>
+            <?php endif; ?>
+          </td>
           <td><strong><?= e($c['campaign_name']) ?></strong>
             <div class="text-muted font-mono" style="font-size:.75rem;"><?= e($c['slug']) ?></div></td>
           <td><?= e($c['location_name'] ?? '—') ?></td>

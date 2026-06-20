@@ -37,6 +37,31 @@
   window.SLV = window.SLV || {};
   window.SLV.renderQRCodes = renderQRCodes;
 
+  // Close any open <details data-lang-dropdown> when clicking outside,
+  // and when one opens, close the others.
+  document.addEventListener('click', function (e) {
+    document.querySelectorAll('details[data-lang-dropdown]').forEach(function (d) {
+      if (d.open && !d.contains(e.target)) {
+        d.open = false;
+      }
+    });
+  });
+  document.querySelectorAll('details[data-lang-dropdown]').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      document.querySelectorAll('details[data-lang-dropdown]').forEach(function (other) {
+        if (other !== d) other.open = false;
+      });
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('details[data-lang-dropdown][open]').forEach(function (d) {
+        d.open = false;
+      });
+    }
+  });
+
   // Share button (Web Share API fallback to copy)
   document.querySelectorAll('[data-share]').forEach(function (btn) {
     btn.addEventListener('click', function () {

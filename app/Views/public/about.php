@@ -1,6 +1,18 @@
+<?php
+$banner = \App\Models\Setting::get('hero_about_image');
+$introHtml = \App\Models\Setting::get('intro_about_html');
+?>
+<?php if ($banner): ?>
+  <div class="page-banner mb-3" style="background-image: url('<?= e(asset_or_upload($banner)) ?>');"></div>
+<?php endif; ?>
+
 <div class="container-md" style="margin: 0 auto;">
   <h1><?= e(__('app.name')) ?></h1>
   <p class="text-muted"><?= e(__('app.tagline')) ?></p>
+
+  <?php if ($introHtml): ?>
+    <div class="card"><?= $introHtml /* admin-controlled HTML */ ?></div>
+  <?php endif; ?>
 
   <div class="card">
     <h2 class="mt-0">Core Value</h2>

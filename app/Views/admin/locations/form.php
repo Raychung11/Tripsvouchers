@@ -6,7 +6,7 @@ $g = fn (string $k, $d = '') => e((string) old($k, $location[$k] ?? $d));
 <a href="<?= e(url('/admin/locations')) ?>" class="text-muted">← <?= e(__('common.back')) ?></a>
 <h1 class="mt-1"><?= e($location ? __('admin.edit') : __('admin.create')) ?> · <?= e(__('admin.locations')) ?></h1>
 
-<form class="card" method="post" action="<?= e($action) ?>" style="max-width:680px;">
+<form class="card" method="post" action="<?= e($action) ?>" enctype="multipart/form-data" style="max-width:680px;">
   <?= csrf_field() ?>
   <div class="grid grid-2">
     <div class="field"><label>State *</label><input class="input" name="state" required value="<?= $g('state') ?>"></div>
@@ -14,10 +14,26 @@ $g = fn (string $k, $d = '') => e((string) old($k, $location[$k] ?? $d));
   </div>
   <div class="field"><label>Area / Tourism Zone *</label><input class="input" name="area_name" required value="<?= $g('area_name') ?>"></div>
   <div class="field"><label>Description</label><textarea class="input" name="description"><?= $g('description') ?></textarea></div>
-  <div class="grid grid-2">
-    <div class="field"><label>Banner URL</label><input class="input" name="banner_image" value="<?= $g('banner_image') ?>"></div>
-    <div class="field"><label>Google Map link</label><input class="input" name="map_link" value="<?= $g('map_link') ?>"></div>
+  <?php $currentBanner = $location['banner_image'] ?? ''; ?>
+  <div class="field">
+    <label><?= e(__('common.upload.banner')) ?></label>
+    <?php if ($currentBanner): ?>
+      <div class="upload-preview mb-1">
+        <img src="<?= e(asset_or_upload($currentBanner)) ?>" alt="">
+        <label class="upload-remove">
+          <input type="checkbox" name="banner_remove" value="1">
+          <?= e(__('common.upload.remove')) ?>
+        </label>
+      </div>
+    <?php endif; ?>
+    <input class="input" type="file" name="banner_file" accept="image/*">
+    <p class="help">
+      <?= e(__('common.upload.help', ['max' => 4])) ?>
+      · <?= e(__('common.upload.url_alt')) ?>
+    </p>
+    <input class="input" name="banner_image" value="<?= $g('banner_image') ?>" placeholder="https://…">
   </div>
+  <div class="field"><label>Google Map link</label><input class="input" name="map_link" value="<?= $g('map_link') ?>"></div>
   <div class="field">
     <label>Status</label>
     <select class="input" name="status">

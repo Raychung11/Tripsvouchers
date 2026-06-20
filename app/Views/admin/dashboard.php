@@ -19,6 +19,40 @@
   <div class="stat warning"><div class="stat-label"><?= e(__('admin.pending_approval')) ?></div><div class="stat-value"><?= e((string) $totals['pending']) ?></div></div>
 </div>
 
+<?php if (!empty($meta)): ?>
+  <div class="card mt-3" style="background: linear-gradient(135deg,#ecfdf5,#fff); border-color:#6ee7b7;">
+    <div class="flex-between">
+      <div>
+        <h3 class="mt-0" style="color:#047857;">📱 <?= e(__('admin.meta.dashboard_title')) ?></h3>
+        <p class="text-muted" style="margin:0; font-size:.9rem;">
+          <?= e(__('admin.meta.dashboard_sub', ['days' => 30])) ?>
+        </p>
+      </div>
+      <a class="btn btn-outline btn-sm" href="<?= e(url('/admin/meta')) ?>">
+        <?= e(__('admin.meta.nav')) ?> →
+      </a>
+    </div>
+    <div class="grid grid-4 mt-2">
+      <div class="stat success">
+        <div class="stat-label">📱 <?= e(__('admin.meta.kpi_whatsapp')) ?></div>
+        <div class="stat-value"><?= number_format((int) $meta['whatsapp_clicks']) ?></div>
+      </div>
+      <div class="stat success">
+        <div class="stat-label">💬 <?= e(__('admin.meta.kpi_conversations')) ?></div>
+        <div class="stat-value"><?= number_format((int) $meta['conversations_started']) ?></div>
+      </div>
+      <div class="stat info">
+        <div class="stat-label">🖱 <?= e(__('admin.meta.kpi_clicks')) ?></div>
+        <div class="stat-value"><?= number_format((int) $meta['clicks']) ?></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">💰 <?= e(__('admin.meta.kpi_spend')) ?></div>
+        <div class="stat-value">RM <?= number_format((float) $meta['spend'], 0) ?></div>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+
 <div class="grid grid-2 mt-3">
   <div class="card">
     <h3 class="mt-0"><?= e(__('admin.daily_redemption')) ?></h3>

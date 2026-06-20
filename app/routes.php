@@ -3,17 +3,31 @@
 
 use App\Controllers as C;
 
+// ─── Health check (for Hostinger / uptime monitors) ───────────────────────
+$router->get('/healthz', [C\HomeController::class, 'health']);
+
 // ─── Public ────────────────────────────────────────────────────────────────
 $router->get('/',                          [C\HomeController::class, 'index']);
 $router->get('/campaigns',                 [C\HomeController::class, 'campaigns']);
 $router->get('/campaigns/{id}',            [C\HomeController::class, 'campaign']);
 $router->get('/merchants',                 [C\HomeController::class, 'merchants']);
 $router->get('/about',                     [C\HomeController::class, 'about']);
+$router->get('/for-merchants',             [C\HomeController::class, 'forMerchants']);
+$router->get('/join',                      [C\HomeController::class, 'forMerchants']);
+$router->get('/privacy',                   [C\HomeController::class, 'privacy']);
+$router->get('/terms',                     [C\HomeController::class, 'terms']);
+$router->get('/contact',                   [C\HomeController::class, 'contact']);
 
 // Voucher claim (visitor)
 $router->get('/claim/{campaign}',          [C\VoucherController::class, 'claimForm']);
 $router->post('/claim/{campaign}',         [C\VoucherController::class, 'claim'], ['csrf']);
 $router->get('/voucher/{code}',            [C\VoucherController::class, 'show']);
+
+// Visitor "my vouchers" — phone-based lookup (no password)
+$router->get('/my',                        [C\VisitorController::class, 'index']);
+$router->post('/my',                       [C\VisitorController::class, 'login'], ['csrf']);
+$router->get('/my/vouchers',               [C\VisitorController::class, 'dashboard']);
+$router->post('/my/logout',                [C\VisitorController::class, 'logout'], ['csrf']);
 
 // Voucher redemption (merchant scans this URL)
 $router->get('/redeem',                    [C\VoucherController::class, 'redeemPreview']);
@@ -90,7 +104,16 @@ $router->group(['auth.admin'], function (\App\Core\Router $r) {
     $r->get('/admin/wallet',               [C\Admin\VoucherController::class, 'wallet']);
     $r->get('/admin/analytics',            [C\Admin\AnalyticsController::class, 'index']);
     $r->get('/admin/export/{type}',        [C\Admin\AnalyticsController::class, 'export']);
+
+    $r->get('/admin/site',                 [C\Admin\SiteController::class, 'index']);
+    $r->post('/admin/site',                [C\Admin\SiteController::class, 'save'], ['csrf']);
+
+    $r->get('/admin/meta',                 [C\Admin\MetaController::class, 'index']);
+    $r->post('/admin/meta/sync',           [C\Admin\MetaController::class, 'sync'], ['csrf']);
 });
+
+// Cron-triggered Meta sync (auth via ?token=META_CRON_TOKEN)
+$router->get('/admin/meta/sync',           [C\Admin\MetaController::class, 'cronSync']);
 
 // ─── Billplz ───────────────────────────────────────────────────────────────
 $router->post('/billplz/callback',         [C\BillplzController::class, 'callback']);
