@@ -97,7 +97,7 @@ return [
     'company' => [
         'name'        => 'SLV Group Sdn Bhd',
         'reg_no'      => env('COMPANY_REG_NO', '202301-XXXXXX'),
-        'address'     => env('COMPANY_ADDRESS', 'Kuala Lumpur, Malaysia'),
+        'address'     => env('COMPANY_ADDRESS', 'Kuala Terengganu, Terengganu'),
         'email'       => env('COMPANY_EMAIL', 'support@slvgroup.my'),
         'phone'       => env('COMPANY_PHONE', '+60 3-1234 5678'),
         // Digits only, used to build wa.me URLs

@@ -44,7 +44,7 @@ return [
         'signout'        => '退出',
     ],
     'home' => [
-        'hero_title'    => '探索马来西亚,领取旅游优惠券',
+        'hero_title'    => '探索登嘉楼,领取旅游优惠券',
         'hero_subtitle' => '由 SLV AI 导游驱动 · 到访 · 领取 · 使用',
         'cta_browse'    => '浏览活动',
         'cta_chat'      => '与 AI 导游对话',
@@ -304,7 +304,7 @@ return [
     'chat' => [
         'title'       => 'AI 导游',
         'placeholder' => '问我关于雪邦、美食、景点……',
-        'welcome'     => '👋 欢迎来到马来西亚!我是您的 AI 导游,可询问景点、美食与优惠券。',
+        'welcome'     => '👋 欢迎来到登嘉楼!我是您的 AI 导游,可询问景点、美食与优惠券。',
         'send'        => '发送',
         'voucher_cta' => '领取优惠券',
     ],
@@ -463,7 +463,7 @@ return [
         'terms_p5'       => '我们可能不时更新本条款。重大变更将于生效前至少 14 天通过平台仪表板与电邮公告。',
 
         'contact_title'  => '联系我们',
-        'contact_intro'  => '通过下列渠道联系 SLV 团队。商家支援时间为周一至周五 9:00 – 18:00(马来西亚时间)。',
+        'contact_intro'  => '通过下列渠道联系 SLV 团队。商家支援时间为周一至周五 9:00 – 18:00(MYT)。',
         'contact_general'=> '一般咨询',
         'contact_merchant'=> '商家支援',
         'contact_press'  => '媒体 / 合作',

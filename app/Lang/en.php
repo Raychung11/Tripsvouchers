@@ -44,7 +44,7 @@ return [
         'signout'        => 'Sign out',
     ],
     'home' => [
-        'hero_title'    => 'Discover Malaysia. Claim Tourism Vouchers.',
+        'hero_title'    => 'Discover Terengganu. Claim Tourism Vouchers.',
         'hero_subtitle' => 'Powered by SLV AI Tour Guide. Visit. Claim. Redeem.',
         'cta_browse'    => 'Browse Campaigns',
         'cta_chat'      => 'Chat with AI Tour Guide',
@@ -304,7 +304,7 @@ return [
     'chat' => [
         'title'       => 'AI Tour Guide',
         'placeholder' => 'Ask me about Sekinchan, food, attractions…',
-        'welcome'     => '👋 Welcome to Malaysia! I’m your AI Tour Guide. Ask me anything about local attractions, food and tourism vouchers.',
+        'welcome'     => '👋 Welcome to Terengganu! I’m your AI Tour Guide. Ask me anything about local attractions, food and tourism vouchers.',
         'send'        => 'Send',
         'voucher_cta' => 'Claim voucher',
     ],

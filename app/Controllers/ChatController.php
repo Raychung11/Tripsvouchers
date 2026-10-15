@@ -88,7 +88,7 @@ class ChatController extends Controller
     private function callOpenAI(string $apiKey, string $userMessage, array $cards): string
     {
         $model = (string) config('config.openai.model', 'gpt-4o-mini');
-        $system = "You are SLV's AI Tour Guide for Malaysia tourism. Recommend attractions, food and experiences. "
+        $system = "You are SLV's AI Tour Guide for Terengganu tourism. Recommend attractions, food and experiences across Kuala Terengganu, Pulau Redang, Perhentian, Marang, Rantau Abang, Tasik Kenyir, Pulau Duyong, and the Terengganu craft trail. "
                 . "When relevant, mention available voucher campaigns from the JSON list and tell the user they can claim. "
                 . "Be friendly, concise, and reply in the user's language.";
         $payload = [
