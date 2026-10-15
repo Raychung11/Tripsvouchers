@@ -1,0 +1,48 @@
+{
+  "name": "SLV Tour Guide — Terengganu",
+  "short_name": "SLV Tour",
+  "description": "Discover Terengganu with an AI tour guide, tourism vouchers, and merchant deals.",
+  "start_url": "/chat?utm_source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0D47A1",
+  "lang": "ms",
+  "dir": "ltr",
+  "categories": ["travel", "lifestyle"],
+  "icons": [
+    {
+      "src": "/assets/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Tour Guide",
+      "short_name": "Tour Guide",
+      "description": "Ask about Terengganu attractions, food, and vouchers",
+      "url": "/chat?utm_source=pwa_shortcut",
+      "icons": [{ "src": "/assets/img/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Campaigns",
+      "short_name": "Campaigns",
+      "url": "/campaigns?utm_source=pwa_shortcut"
+    }
+  ]
+}

@@ -143,6 +143,11 @@ class HomeController extends Controller
         ]);
     }
 
+    public function offline(array $params): void
+    {
+        $this->render('public/offline', ['title' => 'Offline']);
+    }
+
     public function switchLang(array $params): void
     {
         $code = (string) ($params['code'] ?? 'en');

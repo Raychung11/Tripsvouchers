@@ -36,6 +36,9 @@ $router->get('/redeem',                    [C\VoucherController::class, 'redeemP
 $router->get('/chat',                      [C\ChatController::class, 'index']);
 $router->post('/chat/message',             [C\ChatController::class, 'send'], ['csrf']);
 
+// PWA offline fallback
+$router->get('/offline',                   [C\HomeController::class, 'offline']);
+
 // Language switcher
 $router->get('/lang/{code}',               [C\HomeController::class, 'switchLang']);
 

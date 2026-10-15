@@ -15,5 +15,6 @@
 <?= (new \App\Core\View())->partial('mobile_nav') ?>
 <?= \App\Core\View::popScripts() ?>
 <script src="<?= e(asset('js/app.js')) ?>"></script>
+<script src="<?= e(asset('js/pwa.js')) ?>" defer></script>
 </body>
 </html>
