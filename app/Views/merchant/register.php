@@ -146,7 +146,7 @@ $wallet = number_format((float) $pricing['wallet_min'], 0);
             <label for="address"><?= e(__('merchant.address')) ?></label>
             <textarea class="input" id="address" name="address"
                       autocomplete="street-address"
-                      placeholder="No. 88, Jalan Pantai, Sekinchan, 45400 Selangor"><?= e((string) old('address')) ?></textarea>
+                      placeholder="No. 88, Jalan Pantai, Kuala Terengganu, 20000 Terengganu"><?= e((string) old('address')) ?></textarea>
             <p class="help"><?= e(__('merchant.register_address_hint')) ?></p>
           </div>
         </div>

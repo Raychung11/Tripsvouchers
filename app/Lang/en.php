@@ -303,7 +303,7 @@ return [
     ],
     'chat' => [
         'title'       => 'AI Tour Guide',
-        'placeholder' => 'Ask me about Sekinchan, food, attractions…',
+        'placeholder' => 'Ask me about Terengganu, food, attractions…',
         'welcome'     => '👋 Welcome to Terengganu! I’m your AI Tour Guide. Ask me anything about local attractions, food and tourism vouchers.',
         'send'        => 'Send',
         'voucher_cta' => 'Claim voucher',

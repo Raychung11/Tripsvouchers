@@ -169,7 +169,7 @@ class Meta
     public static function demoData(int $days = 30): array
     {
         $campaigns = [
-            ['cid' => 'demo_c1', 'cname' => 'Visit Sekinchan — CTWA', 'objective' => 'OUTCOME_ENGAGEMENT'],
+            ['cid' => 'demo_c1', 'cname' => 'Visit Terengganu — CTWA', 'objective' => 'OUTCOME_ENGAGEMENT'],
             ['cid' => 'demo_c2', 'cname' => 'Penang Heritage Food Walk', 'objective' => 'OUTCOME_TRAFFIC'],
             ['cid' => 'demo_c3', 'cname' => 'Sabah Coastal Experience', 'objective' => 'OUTCOME_ENGAGEMENT'],
         ];

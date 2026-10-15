@@ -303,7 +303,7 @@ return [
     ],
     'chat' => [
         'title'       => 'AI 导游',
-        'placeholder' => '问我关于雪邦、美食、景点……',
+        'placeholder' => '问我关于 Terengganu、美食、景点……',
         'welcome'     => '👋 欢迎来到 Terengganu!我是您的 AI 导游,可询问景点、美食与优惠券。',
         'send'        => '发送',
         'voucher_cta' => '领取优惠券',
