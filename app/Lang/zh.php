@@ -44,7 +44,7 @@ return [
         'signout'        => '退出',
     ],
     'home' => [
-        'hero_title'    => '探索登嘉楼,领取旅游优惠券',
+        'hero_title'    => '探索 Terengganu,领取旅游优惠券',
         'hero_subtitle' => '由 SLV AI 导游驱动 · 到访 · 领取 · 使用',
         'cta_browse'    => '浏览活动',
         'cta_chat'      => '与 AI 导游对话',
@@ -304,7 +304,7 @@ return [
     'chat' => [
         'title'       => 'AI 导游',
         'placeholder' => '问我关于雪邦、美食、景点……',
-        'welcome'     => '👋 欢迎来到登嘉楼!我是您的 AI 导游,可询问景点、美食与优惠券。',
+        'welcome'     => '👋 欢迎来到 Terengganu!我是您的 AI 导游,可询问景点、美食与优惠券。',
         'send'        => '发送',
         'voucher_cta' => '领取优惠券',
     ],
