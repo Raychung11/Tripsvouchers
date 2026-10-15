@@ -36,14 +36,16 @@ class AuthController extends Controller
     public function register(array $params): void
     {
         $data = [
-            'business_name' => trim((string) $this->input('business_name', '')),
-            'owner_name'    => trim((string) $this->input('owner_name', '')),
-            'email'         => trim((string) $this->input('email', '')),
-            'phone'         => trim((string) $this->input('phone', '')),
-            'whatsapp'      => trim((string) $this->input('whatsapp', '')),
-            'category'      => (string) $this->input('category', 'fnb'),
-            'address'       => trim((string) $this->input('address', '')),
-            'password'      => (string) $this->input('password', ''),
+            'business_name'         => trim((string) $this->input('business_name', '')),
+            'owner_name'            => trim((string) $this->input('owner_name', '')),
+            'email'                 => trim((string) $this->input('email', '')),
+            'phone'                 => trim((string) $this->input('phone', '')),
+            'whatsapp'              => trim((string) $this->input('whatsapp', '')),
+            'category'              => (string) $this->input('category', 'fnb'),
+            'address'               => trim((string) $this->input('address', '')),
+            'password'              => (string) $this->input('password', ''),
+            'password_confirmation' => (string) $this->input('password_confirmation', ''),
+            'terms'                 => $this->input('terms') ? '1' : '',
         ];
         flash_input($data);
 
@@ -52,8 +54,15 @@ class AuthController extends Controller
             'owner_name'    => 'required|min:2',
             'email'         => 'required|email',
             'phone'         => 'required|min:7',
-            'password'      => 'required|min:6',
+            'password'      => 'required|min:8',
         ], $data);
+
+        if ($data['password'] !== '' && $data['password'] !== $data['password_confirmation']) {
+            $errors['password_confirmation'][] = __('merchant.register_password_mismatch');
+        }
+        if ($data['terms'] !== '1') {
+            $errors['terms'][] = __('merchant.register_terms_required');
+        }
 
         if (!$errors) {
             $exists = Database::value('SELECT id FROM users WHERE email = ?', [$data['email']]);

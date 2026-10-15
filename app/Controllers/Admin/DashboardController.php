@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 
 use App\Core\Controller;
 use App\Core\Database;
+use App\Models\MetaMetric;
 
 class DashboardController extends Controller
 {
@@ -41,12 +42,18 @@ class DashboardController extends Controller
              GROUP BY c.id ORDER BY claimed DESC LIMIT 5'
         );
 
+        // Last-30d Meta WhatsApp metrics (zero if not yet synced)
+        $metaSince = date('Y-m-d', strtotime('-29 days'));
+        $metaUntil = date('Y-m-d');
+        $meta = MetaMetric::totals($metaSince, $metaUntil);
+
         $this->render('admin/dashboard', [
             'title'         => __('admin.dashboard'),
             'totals'        => $totals,
             'daily'         => $daily,
             'top_merchants' => $topMerchants,
             'top_campaigns' => $topCampaigns,
+            'meta'          => $meta,
         ]);
     }
 }

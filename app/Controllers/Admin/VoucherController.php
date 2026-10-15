@@ -11,7 +11,9 @@ class VoucherController extends Controller
     public function index(array $params): void
     {
         $rows = Database::all(
-            'SELECT v.*, c.campaign_name, m.business_name FROM vouchers v
+            'SELECT v.*, c.campaign_name, c.banner_image AS campaign_banner,
+                    m.business_name
+             FROM vouchers v
              JOIN campaigns c ON c.id = v.campaign_id
              LEFT JOIN merchants m ON m.id = v.merchant_id
              ORDER BY v.claimed_at DESC LIMIT 200'

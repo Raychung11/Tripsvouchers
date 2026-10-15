@@ -6,7 +6,7 @@ $g = fn (string $k, $d = '') => e((string) old($k, $campaign[$k] ?? $d));
 <a href="<?= e(url('/admin/campaigns')) ?>" class="text-muted">← <?= e(__('common.back')) ?></a>
 <h1 class="mt-1"><?= e($campaign ? __('admin.edit') : __('admin.create')) ?> · <?= e(__('admin.campaigns')) ?></h1>
 
-<form class="card" method="post" action="<?= e($action) ?>" style="max-width:760px;">
+<form class="card" method="post" action="<?= e($action) ?>" enctype="multipart/form-data" style="max-width:760px;">
   <?= csrf_field() ?>
   <div class="field"><label>Campaign name *</label><input class="input" name="campaign_name" required value="<?= $g('campaign_name') ?>"></div>
   <div class="field"><label>Description</label><textarea class="input" name="description"><?= $g('description') ?></textarea></div>
@@ -49,7 +49,25 @@ $g = fn (string $k, $d = '') => e((string) old($k, $campaign[$k] ?? $d));
     <div class="field"><label>Start date</label><input class="input" type="date" name="start_date" value="<?= $g('start_date') ?>"></div>
     <div class="field"><label>End date</label><input class="input" type="date" name="end_date" value="<?= $g('end_date') ?>"></div>
   </div>
-  <div class="field"><label>Banner image URL</label><input class="input" name="banner_image" value="<?= $g('banner_image') ?>"></div>
+  <?php $currentBanner = $campaign['banner_image'] ?? ''; ?>
+  <div class="field">
+    <label><?= e(__('common.upload.banner')) ?></label>
+    <?php if ($currentBanner): ?>
+      <div class="upload-preview mb-1">
+        <img src="<?= e(asset_or_upload($currentBanner)) ?>" alt="">
+        <label class="upload-remove">
+          <input type="checkbox" name="banner_remove" value="1">
+          <?= e(__('common.upload.remove')) ?>
+        </label>
+      </div>
+    <?php endif; ?>
+    <input class="input" type="file" name="banner_file" accept="image/*">
+    <p class="help">
+      <?= e(__('common.upload.help', ['max' => 4])) ?>
+      · <?= e(__('common.upload.url_alt')) ?>
+    </p>
+    <input class="input" name="banner_image" value="<?= $g('banner_image') ?>" placeholder="https://…">
+  </div>
   <div class="field"><label>Terms &amp; conditions</label><textarea class="input" name="terms"><?= $g('terms') ?></textarea></div>
   <button class="btn btn-primary btn-lg"><?= e(__('admin.save')) ?></button>
 </form>

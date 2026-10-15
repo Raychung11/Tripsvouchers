@@ -1,0 +1,19 @@
+# Defense in depth — never execute scripts from this directory.
+# All requests for *.php (or other scripty extensions) are denied.
+
+<FilesMatch "(?i)\.(php|phtml|phar|pl|cgi|sh|asp|aspx|jsp)$">
+    Require all denied
+</FilesMatch>
+
+# Disable script handlers entirely under this folder (Apache 2.4)
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+Options -ExecCGI -Indexes
+RemoveHandler .php .phtml .phar
+RemoveType .php .phtml .phar
+AddType text/plain .php .phtml .phar
